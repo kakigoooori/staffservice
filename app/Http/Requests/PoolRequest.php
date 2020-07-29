@@ -25,7 +25,7 @@ class PoolRequest extends FormRequest
     {
         return [
             'work' =>'required',
-            'price' => 'required','integer',
+            'price' => ['required','regex:/^[0-9]+$/','max:20'],
             'start' => 'required',
             'end' => 'required',
             'worknote' => 'required',

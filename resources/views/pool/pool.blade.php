@@ -73,6 +73,8 @@
      </p>   
 </div>
 
+<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
 
 <br/><br/>        
 <input type="submit" value="投稿" class="btn btn-primary">    

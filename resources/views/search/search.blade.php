@@ -31,6 +31,7 @@
  
 <table class="table table-hover">
     <tr>
+        <th>id</th>
         <th>作業名</th>
         <th>値段</th>
         <th>ジャンル</th>
@@ -40,12 +41,14 @@
     </tr>
     @foreach ($search as $menu)
     <tr>
+        <td>{{ $menu->id }}</td>
         <td>{{ $menu->work }}</td>
         <td>{{ $menu->price }}</td>
         <td>{{ $menu->genre }}</td>
         <td>{{ $menu->start }}</td>
         <td>{{ $menu->end }}</td>
         <td><a href="/product/{{ $menu->id }}" class="btn btn-success">確認する</a></td>
+        <th></th>
     </tr>
     @endforeach
 </table>

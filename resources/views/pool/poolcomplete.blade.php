@@ -56,6 +56,12 @@
   </tr>
 
 
+
+  <input type="hidden" name="user_id" value="{{ $input['user_id'] }}">
+  
+ 
+
+
 </table>
 <p>以上の内容で投稿します。</p>
 <br>

@@ -2,7 +2,7 @@
 @section('content')
 
 </head>
-<h1>Matching Station</h1>
+<h1>staff service</h1>
 
 <div id="carousel-1" class="carousel slide">
   <ol class="carousel-indicators">
@@ -31,30 +31,11 @@
   </a>
 </div>
 
+<h1>topページだよaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h1>
 
+<form class="form-inline my-2 my-lg-0" action="{{url('/search')}}" method="GET">
+      <input class="form-control mr-sm-2" type="search" placeholder="仕事名をいれてみて"  name="work" value="">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+    </form>
 
-
-<form method="get" action="/login">
-<input type="submit" value="会員の方はこちら" class="btn btn-primary">
-</form>
-<br>
-<form method="get" action="/create">
-<input type="submit" value="新規登録" class="btn btn-success">
-</form>
-<br>
-<form method="get" action="/pool">
-<input type="submit" value="投稿する" class="btn btn-danger">
-</form>
-<br>
-<form method="get" action="/search">
-<input type="submit" value="検索する" class="btn btn-warning">
-</form>
-<h1>topページだよ</h1>
-<p>
-    aaaaaaaaaaaaaaaaaaaaaa<br>
-    aaaaaaaaaaaaaaaaaaaaaa<br>
-    aaaaaaaaaaaaaaaaaaaaaa<br>
-    aaaaaaaaaaaaaaaaaaaaaa<br>
-    aaaaaaaaaaaaaaaaaaaaaa<br>
-</p>
 @stop

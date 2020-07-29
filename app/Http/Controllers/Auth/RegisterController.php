@@ -6,9 +6,13 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -27,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/mypage';
 
     /**
      * Create a new controller instance.
@@ -64,8 +68,17 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'nickname' => $data['nickname'],
+            'email' => $data['email'],
+            'gender' => $data['gender'],
+            'area' => $data['area'],
+            'note' => $data['note'],
+            'image' => $data['image'],
+        
         ]);
     }
-}
+
+   
+ }
+
