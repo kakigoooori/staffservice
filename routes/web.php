@@ -24,8 +24,6 @@ Route::get('/top', 'BaseController@getTop');
 //alert画面へのアクセス
 Route::get('/alert', 'BaseController@alert');
 
-//サイト概要画面へのアクセス
-Route::get('/index', 'InformationController@index');
 
 //サイト問い合わせへのアクセス
 Route::get('/contact', 'InformationController@contact');
@@ -106,6 +104,13 @@ Route::post('/mypage/changepassword', 'EditController@changePassword')->name('ch
 Route::get('/pool', 'BaseController@getPool');
 Route::post('/pool', 'BaseController@poolCheck');
 Route::post('/done', 'BaseController@poolDone');
+
+
+//サイト概要画面へのアクセス
+Route::get('/client', 'BaseController@client');
+Route::post('/client', 'BaseController@clientCheck');
+Route::post('/client/done', 'BaseController@clientDone');
+
 
 //search画面へのアクセス
 Route::get('/search', 'BaseController@getSearch');

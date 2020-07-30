@@ -5,26 +5,46 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-2">
             <div class="panel panel-default">
-            <h2>新規登録</h2>
+            <h2>担当者登録</h2>
             <br>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">ユーザーID</label>
+                        <div class="form-group{{ $errors->has('area') ? ' has-error' : '' }}">
+                            <label for="area" class="col-md-4 control-label">事業所</label>
+
+                            <div class="col-md-6">                              
+                                     <select name="area" required class="form-control" >
+                                        <option value="" selected>選択してください</option>
+                                        <option value="新宿 本社">新宿 本社</option>
+                                        <option value="渋谷">渋谷</option>
+                                        <option value="池袋">池袋</option>
+                                        <option value="大宮">大宮</option>
+                                        <option value="横浜">横浜</option>
+                                    </select> 
+                                    
+                                    @if ($errors->has('area'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('area') }}</strong>
+                                    </span>
+                                    @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('number') ? ' has-error' : '' }}">
+                            <label for="number" class="col-md-4 control-label">番号</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required >
+                                <input id="number" type="text" class="form-control" name="number" value="{{ old('number') }}" required>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('number'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('number') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
@@ -50,14 +70,91 @@
 
 
                         <div class="form-group{{ $errors->has('nickname') ? ' has-error' : '' }}">
-                            <label for="nickname" class="col-md-4 control-label">ニックネーム</label>
+                            <label for="nickname" class="col-md-4 control-label">氏名</label>
 
                             <div class="col-md-6">
-                                <input id="nickname" type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" required >
+                                <input id="nickname" type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" required>
 
                                 @if ($errors->has('nickname'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('nickname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('authority') ? ' has-error' : '' }}">
+                            <label for="authority" class="col-md-4 control-label">ユーザー種別</label>
+
+                            <div class="col-md-6">                              
+                                     <select name="authority" required class="form-control" >
+                                        <option value="" selected>選択してください</option>
+                                        <option value="マネージャー">マネージャー</option>
+                                        <option value="サブマネージャー">サブマネージャー</option>
+                                        <option value="コーディネーター">コーディネーター</option>
+                                        <option value="アシスタント">アシスタント</option>
+                                        <option value="スタッフ">スタッフ</option>
+                                    </select> 
+                                    
+                                    @if ($errors->has('authority'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('authority') }}</strong>
+                                    </span>
+                                    @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('team') ? ' has-error' : '' }}">
+                            <label for="team" class="col-md-4 control-label">部署名</label>
+
+                            <div class="col-md-6">                              
+                                     <select name="team" required class="form-control" >
+                                        <option value="" selected>選択してください</option>
+                                        <option value="総務部">総務部</option>
+                                        <option value="人事部">人事部</option>
+                                        <option value="法務部">法務部</option>
+                                        <option value="経理部">経理部</option>
+                                        <option value="財務部">財務部</option>
+                                        <option value="マーケティング部">マーケティング部</option>
+                                        <option value="広報部">広報部</option>
+                                        <option value="営業部">営業部</option>
+                                        <option value="開発部">開発部</option>
+                                        <option value="企画開発部">企画開発部</option>
+                                        <option value="秘書室">秘書室</option>
+                                        <option value="執行役員">執行役員</option>
+                                    </select> 
+                                    
+                                    @if ($errors->has('team'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('team') }}</strong>
+                                    </span>
+                                    @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('post') ? ' has-error' : '' }}">
+                            <label for="post" class="col-md-4 control-label">役職</label>
+
+                            <div class="col-md-6">
+                                <input id="post" type="text" class="form-control" name="post" value="{{ old('post') }}" required>
+
+                                @if ($errors->has('post'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('post') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}">
+                            <label for="tel" class="col-md-4 control-label">電話</label>
+
+                            <div class="col-md-6">
+                                <input id="tel" type="tel" class="form-control" name="tel" value="{{ old('tel') }}" required>
+
+                                @if ($errors->has('tel'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('tel') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -74,93 +171,6 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('genre') ? ' has-error' : '' }}">
-                            <label for="genre" class="col-md-4 control-label">性別</label>
-
-                            <div class="col-md-6">
-                                <div class="radio-inline">                
-                                    <label>            
-                                        <input type="radio" name="gender" required value="男" @if (old('gender') == '男') checked @endif>男          
-                                    </label>        
-                                </div>        
-
-                                <div class="radio-inline">            
-                                    <label>            
-                                        <input type="radio" name="gender" required value="女" @if (old('gender') == '女') checked @endif>女        
-                                    </label>        
-                                </div>
-
-                                @if ($errors->has('gender'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('gender') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('area') ? ' has-error' : '' }}">
-                            <label for="area" class="col-md-4 control-label">住まい</label>
-
-                            <div class="col-md-6">                              
-                                     <select name="area" required class="form-control" >
-                                        <option value="" selected>選択してください</option>
-                                        <option value="北海道">北海道</option>
-                                        <option value="青森県">青森県</option>
-                                        <option value="岩手県">岩手県</option>
-                                        <option value="宮城県">宮城県</option>
-                                        <option value="秋田県">秋田県</option>
-                                        <option value="山形県">山形県</option>
-                                        <option value="福島県">福島県</option>
-                                        <option value="茨城県">茨城県</option>
-                                        <option value="栃木県">栃木県</option>
-                                        <option value="群馬県">群馬県</option>
-                                        <option value="埼玉県">埼玉県</option>
-                                        <option value="千葉県">千葉県</option>
-                                        <option value="東京都">東京都</option>
-                                        <option value="神奈川県">神奈川県</option>
-                                        <option value="新潟県">新潟県</option>
-                                        <option value="富山県">富山県</option>
-                                        <option value="石川県">石川県</option>
-                                        <option value="福井県">福井県</option>
-                                        <option value="山梨県">山梨県</option>
-                                        <option value="長野県">長野県</option>
-                                        <option value="岐阜県">岐阜県</option>
-                                        <option value="静岡県">静岡県</option>
-                                        <option value="愛知県">愛知県</option>
-                                        <option value="三重県">三重県</option>
-                                        <option value="滋賀県">滋賀県</option>
-                                        <option value="京都府">京都府</option>
-                                        <option value="大阪府">大阪府</option>
-                                        <option value="兵庫県">兵庫県</option>
-                                        <option value="奈良県">奈良県</option>
-                                        <option value="和歌山県">和歌山県</option>
-                                        <option value="鳥取県">鳥取県</option>
-                                        <option value="島根県">島根県</option>
-                                        <option value="岡山県">岡山県</option>
-                                        <option value="広島県">広島県</option>
-                                        <option value="山口県">山口県</option>
-                                        <option value="徳島県">徳島県</option>
-                                        <option value="香川県">香川県</option>
-                                        <option value="愛媛県">愛媛県</option>
-                                        <option value="高知県">高知県</option>
-                                        <option value="福岡県">福岡県</option>
-                                        <option value="佐賀県">佐賀県</option>
-                                        <option value="長崎県">長崎県</option>
-                                        <option value="熊本県">熊本県</option>
-                                        <option value="大分県">大分県</option>
-                                        <option value="宮崎県">宮崎県</option>
-                                        <option value="鹿児島県">鹿児島県</option>
-                                        <option value="沖縄県">沖縄県</option>
-                                    </select> 
-                                    
-                                    @if ($errors->has('area'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('area') }}</strong>
-                                    </span>
-                                    @endif
                             </div>
                         </div>
 
