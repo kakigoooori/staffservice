@@ -13,10 +13,45 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact;
 use App\Mail\Receive;
 use App\Mail\Complete;
-
+use App\Http\Requests\clientRequest;
 
 class BaseController extends Controller
 {
+public function client() 
+    {
+                // ログインしていたら、mypageを表示
+                if (Auth::check()) {
+                    return view('client/client');
+                 } else {
+                // ログインしていなかったら、Login画面を表示
+                    return view('alert/alert');
+        
+                }
+    }
+    public function clientCheck(clientRequest $request) 
+    {
+        return view('client/clientcomplete')->with('input', $request->all());
+    }
+
+    public function clientDone(clientRequest $request) 
+    {
+        $client_record = new client;
+
+        $client_record->name = $request->name;
+        $client_record->email = $request->email;
+        $client_record->area  = $request->area ;
+        $client_record->genre = $request->genre;
+        $client_record->note = $request->note;
+        $client_record->save();
+    
+
+        //戻る場所を指定しておく↓
+
+      return redirect()->action('BaseController@top');
+
+    }
+
+
     //top画面
     public function getTop() {
         return view('top/top');
@@ -324,6 +359,7 @@ class BaseController extends Controller
     }
 
 
+    
     public function poolCheck(PoolRequest $request) 
     {
         return view('pool/poolcomplete')->with('input', $request->all());
@@ -348,7 +384,6 @@ class BaseController extends Controller
       return redirect()->action('BaseController@mypagetoukou');
 
     }
-
 
 
 

@@ -49,7 +49,7 @@
         <a class="nav-link" href="/search">検索リスト</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/index">サイト概要</a>
+        <a class="nav-link" href="/client">サイト概要</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/contact">お問い合わせ</a>
@@ -120,7 +120,7 @@
             <div class="category">
             <a href="/top">サイトTOP</a>
             <a href="/search">検索</a>
-            <a href="/index">サイト概要</a>
+            <a href="/client">サイト概要</a>
             <a href="/pool">投稿</a>
             <a href="/contact">お問い合わせ</a>   
             </div>
