@@ -31,17 +31,15 @@
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-<a class="navbar-brand" href="/top"><img alt="ロゴ" src="{{ asset('/img/logo.png') }}">staffservice</a>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark bg-dark mt-3 mb-3">
+<a class="navbar-brand" href="/top"><img alt="ロゴ" src="{{ asset('/img/logo.jpg') }}"width="40" height="auto">　staffservice</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/top">ホーム <span class="sr-only">(current)</span></a>
-      </li>
+     
       <li class="nav-item">
         <a class="nav-link" href="/pool">投稿する</a>
       </li>
@@ -49,10 +47,10 @@
         <a class="nav-link" href="/search">検索リスト</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/client">サイト概要</a>
+        <a class="nav-link" href="/client">クライアント登録</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/contact">お問い合わせ</a>
+        <a class="nav-link" href="/clientList">クライアント一覧</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,10 +70,12 @@
                    <ul class="nav navbar-nav navbar-right">
                         <!-- ログイン -->
                         @if (Auth::guest())
-                            <li><a class="btn btn-success" href="{{ route('login') }}">ログイン</a></li>
-                            <li><a class="btn btn-info" href="{{ route('register') }}">新規登録</a></li>
+                       
+                            <li><a class="btn btn-danger " href="{{ route('login') }}">ログイン</a></li>　
+
+                            <li><a class="btn btn-danger" href="{{ route('register') }}">新規管理者登録</a></li>
                             @else
-                            <li class="nav-item"><a class="nav-link" href="#">  {{ Auth::user()->nickname }}様</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">  {{ Auth::user()->name }}様</a></li>
                                 <li>
                                         <a class="btn btn-warning" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -101,39 +101,9 @@
   <footer class="footer">
     <div class="container">
         <div class="row">
-        <div class="col-sm-3">
-            <h4 class="title">Matching Station</h4>
-            <p>「一人ひとりが『自分のストーリー』を生きていく世の中をつくる」
-            わたしたちは、そんな「商い」の原点を体験できる機会を提供します。</p>
-            </div>
-        <div class="col-sm-3">
-            <h4 class="title">サイト情報</h4>
-            <span class="acount-icon">          
-            <a href="terms_of_service"><i class="fa fa-heart" aria-hidden="true"></i>利用規約</a>
-            <a href="company"><i class="fa fa-cart-plus" aria-hidden="true"></i>運営会社</a>
-            <a href="/law"><i class="fa fa-user" aria-hidden="true"></i>特定商取引法の表示 </a>
-            <a href="privacy"><i class="fa fa-globe" aria-hidden="true"></i>プライバシーポリシー</a>           
-          </span>
-            </div>
-        <div class="col-sm-3">
-            <h4 class="title">Category</h4>
-            <div class="category">
-            <a href="/top">サイトTOP</a>
-            <a href="/search">検索</a>
-            <a href="/client">サイト概要</a>
-            <a href="/pool">投稿</a>
-            <a href="/contact">お問い合わせ</a>   
-            </div>
-            </div>
-        <div class="col-sm-3">
-            <h4 class="title">Link</h4>
-            <p><a href="https://twitter.com/home"><img src="{{ asset('/img/Twitter.png') }}" class="icon">twitter</a></p>
-            <p><a href="https://www.youtube.com/"><img src="{{ asset('/img/youtube.png') }}" class="icon">Youtube</a></p>
-            <p><a href="https://www.youtube.com/"><img src="{{ asset('/img/Instagram.png') }}" class="icon">Instagram</a></p>
-           
-            </div>
-        </div>
-        <hr>
+        <div class="col-sm">
+            
+        
         
         <div class="row text-center"> © 2020. Made with  by hashimoto&kuse</div>
         </div>

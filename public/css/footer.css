@@ -38,8 +38,12 @@
 
 
 /*FOOTER START///////////////////*/
+.fwrapper{
+    width: 100%;
+    background-color: #FDE9FB;}
 
 .footer {
+   
     padding: 50px 0 20px 0;
     background-color: #35404f;
     color: #878c94;

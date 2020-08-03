@@ -25,8 +25,15 @@ class ClientRequest extends FormRequest
     {
         return [
             'name' =>'required',
+             'name_kana' => [
+                'required',
+                'regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u'
+             ],
             'email' => 'required',
-            'area' => 'required',
+            'office_name' => 'required',
+            'address' => 'required',
+            'tel' => 'required',
+            'date' => 'required',
             'genre' => 'required',
             'note' => 'required',
         ];

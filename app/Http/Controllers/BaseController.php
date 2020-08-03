@@ -13,13 +13,38 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact;
 use App\Mail\Receive;
 use App\Mail\Complete;
-use App\Http\Requests\clientRequest;
+use App\Http\Requests\ClientRequest;
+use App\client;
 
 class BaseController extends Controller
 {
+ //検索画面
+ public function clientList(Request $request) {
+
+
+
+
+    $query = clientList::query();
+
+
+    
+    
+
+    
+    $clientlist = $query->get();
+
+    return view('clientlist/clientlist', compact('clientlist'));
+
+}
+
+
+
+
+
 public function client() 
+
     {
-                // ログインしていたら、mypageを表示
+                // 
                 if (Auth::check()) {
                     return view('client/client');
                  } else {
@@ -30,16 +55,25 @@ public function client()
     }
     public function clientCheck(clientRequest $request) 
     {
-        return view('client/clientcomplete')->with('input', $request->all());
+        $data = $request->all();
+        $request->session()->put($data); 
+         
+        return view('client/clientcomplete')->with('input', $request->all());;
+        
     }
 
     public function clientDone(clientRequest $request) 
     {
-        $client_record = new client;
+        $client_record = new Client;
 
         $client_record->name = $request->name;
+        $client_record->name_kana = $request->name_kana;
         $client_record->email = $request->email;
-        $client_record->area  = $request->area ;
+        $client_record->office_name = $request->office_name;
+        $client_record->address = $request->address;
+        $client_record->tel = $request->tel;
+        $client_record->url = $request->url;
+        $client_record->date  = $request->date ;
         $client_record->genre = $request->genre;
         $client_record->note = $request->note;
         $client_record->save();
@@ -54,9 +88,16 @@ public function client()
 
     //top画面
     public function getTop() {
+        // 
+        if (Auth::check()) {
+            return view('client/client');
+         } else {
+        // ログインしていなかったら、Login画面を表示
+            return view('alert/alert');
+
         return view('top/top');
     }
-
+    }
 
      //alert画面
      public function alert() {

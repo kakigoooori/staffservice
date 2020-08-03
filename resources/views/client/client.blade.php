@@ -1,5 +1,6 @@
 @extends('layout/layout')
 @section('content')
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 
 <div class="container">
     <div class="row">
@@ -13,7 +14,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">ユーザーID</label>
+                            <label for="name" class="col-md-4 control-label">クライアント名</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required >
@@ -26,13 +27,18 @@
                             </div>
                         </div>
 
-
+                        <div class="form-group{{ $errors->has('name_kana') ? ' has-error' : '' }}">
+        <label for="name_kana"class="col-md-4 control-label">フリガナ</label>
+        <div class="col-md-10">
+        <input type="text" class="form-control{{ $errors->has('name_kana') ? ' is-invalid' : '' }}" name="name_kana" value="{{ old('name_kana') }}">
+        @if ($errors->has('name_kana'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('name_kana') }}</strong>
+            </span>
+        @endif
+    </div>
+    </div>
                         
-                        
-
-                        
-                        </div>
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -48,73 +54,64 @@
                         </div>
 
                         
-                            </div>
-                        </div>
+                        <div class="office_name">
+        <label for="office_name" class=col-md-4 control-label>事業所名</label>
+        <div class="col-md-6">
+        <input type="text" class="form-control{{ $errors->has('office_name') ? ' is-invalid' : '' }}" name="office_name" value="{{ old('office_name') }}">
+        @if ($errors->has('office_name'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('office_name') }}</strong>
+            </span>
+        @endif
+    </div>
+    </div>
+                      
+    <div class="form-group">
+            <div class="col-md-3 mb-3">
+                <label for="inputAddress01">郵便番号(7桁)</label>
+                <input type="text" name="zip01" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','pref01','addr01');" class="form-control" id="inputAddress01" placeholder="1030013">
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="inputAddress02">都道府県</label>
+                <input type="text" name="pref01" id="inputAddress02" class="form-control" placeholder="東京都">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="inputAddress03">住所</label>
+                <input type="text" name="addr01" class="form-control" id="inputAddress03" placeholder="中央区日本橋人形町">
+            </div>
+        </div>
+        <!--/住所-->
 
-                        <div class="form-group{{ $errors->has('area') ? ' has-error' : '' }}">
-                            <label for="area" class="col-md-4 control-label">　住まい</label>
-
-                            <div class="col-md-6">                              
-                                     <select name="area" required class="form-control" >
-                                        <option value="" selected>選択してください</option>
-                                        <option value="北海道">北海道</option>
-                                        <option value="青森県">青森県</option>
-                                        <option value="岩手県">岩手県</option>
-                                        <option value="宮城県">宮城県</option>
-                                        <option value="秋田県">秋田県</option>
-                                        <option value="山形県">山形県</option>
-                                        <option value="福島県">福島県</option>
-                                        <option value="茨城県">茨城県</option>
-                                        <option value="栃木県">栃木県</option>
-                                        <option value="群馬県">群馬県</option>
-                                        <option value="埼玉県">埼玉県</option>
-                                        <option value="千葉県">千葉県</option>
-                                        <option value="東京都">東京都</option>
-                                        <option value="神奈川県">神奈川県</option>
-                                        <option value="新潟県">新潟県</option>
-                                        <option value="富山県">富山県</option>
-                                        <option value="石川県">石川県</option>
-                                        <option value="福井県">福井県</option>
-                                        <option value="山梨県">山梨県</option>
-                                        <option value="長野県">長野県</option>
-                                        <option value="岐阜県">岐阜県</option>
-                                        <option value="静岡県">静岡県</option>
-                                        <option value="愛知県">愛知県</option>
-                                        <option value="三重県">三重県</option>
-                                        <option value="滋賀県">滋賀県</option>
-                                        <option value="京都府">京都府</option>
-                                        <option value="大阪府">大阪府</option>
-                                        <option value="兵庫県">兵庫県</option>
-                                        <option value="奈良県">奈良県</option>
-                                        <option value="和歌山県">和歌山県</option>
-                                        <option value="鳥取県">鳥取県</option>
-                                        <option value="島根県">島根県</option>
-                                        <option value="岡山県">岡山県</option>
-                                        <option value="広島県">広島県</option>
-                                        <option value="山口県">山口県</option>
-                                        <option value="徳島県">徳島県</option>
-                                        <option value="香川県">香川県</option>
-                                        <option value="愛媛県">愛媛県</option>
-                                        <option value="高知県">高知県</option>
-                                        <option value="福岡県">福岡県</option>
-                                        <option value="佐賀県">佐賀県</option>
-                                        <option value="長崎県">長崎県</option>
-                                        <option value="熊本県">熊本県</option>
-                                        <option value="大分県">大分県</option>
-                                        <option value="宮崎県">宮崎県</option>
-                                        <option value="鹿児島県">鹿児島県</option>
-                                        <option value="沖縄県">沖縄県</option>
-                                    </select> 
-                                    
-                                    @if ($errors->has('area'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('area') }}</strong>
-                                    </span>
-                                    @endif
-                            </div>
                        
 
-                        <p><b>　職種一覧</b></p>   
+<p><div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}"></p>
+<p> <label for="tel" class="col-md-4 control-label">電話番号</label></p>
+
+                            <div class="col-md-6">
+                                <input id="tel" type="tel" class="form-control" name="tel" value="{{ old('tel') }}" required>
+
+                                @if ($errors->has('tel'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('tel') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <p><div class="url"></p>
+        <label for="url"class="col-md-4 control-label">URL</label>
+        <div class="col-md-6">
+        <input type="text" class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }}" name="url" value="{{ old('url') }}">
+        @if ($errors->has('url'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('url') }}</strong>
+            </span>
+        @endif
+    </div>
+    <p><b>　契約締結日</b></p>
+    <div class="col-md-6">
+    <input type="date"class="col-md-4 control-label" />
+
+                        <p><b>職種一覧</b></p>   
 <div class="form-group">              
 <select name="genre" class="form-control">        
 <option value="" selected>　　選択してください</option>
@@ -136,6 +133,7 @@
 </select>
 </div>  
                         <div class="form-group{{ $errors->has('note') ? ' has-error' : '' }}">
+                            
                             <label for="note" class="col-md-4 control-label">備考欄</label>
 
                                  <div class="col-md-6">
@@ -144,7 +142,7 @@
                         </div>
 
                         
-                        <
+                        
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -152,9 +150,9 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
+                
+           
+        
     </div>
 </div>
 

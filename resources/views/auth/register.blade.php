@@ -69,15 +69,15 @@
                         </div>
 
 
-                        <div class="form-group{{ $errors->has('nickname') ? ' has-error' : '' }}">
-                            <label for="nickname" class="col-md-4 control-label">氏名</label>
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">氏名</label>
 
                             <div class="col-md-6">
-                                <input id="nickname" type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" required>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
 
-                                @if ($errors->has('nickname'))
+                                @if ($errors->has('name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('nickname') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>

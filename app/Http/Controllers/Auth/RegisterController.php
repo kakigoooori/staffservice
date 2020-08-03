@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'area' => $data['area'],
             'number' => $data['number'],
             'password' => bcrypt($data['password']),
-            'nickname' => $data['nickname'],
+            'name' => $data['name'],
             'authority' => $data['authority'],
             'team' => $data['team'],
             'post' => $data['post'],

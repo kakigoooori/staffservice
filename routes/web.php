@@ -25,22 +25,10 @@ Route::get('/top', 'BaseController@getTop');
 Route::get('/alert', 'BaseController@alert');
 
 
-//サイト問い合わせへのアクセス
-Route::get('/contact', 'InformationController@contact');
+//クライアントリストへのアクセス
+Route::get('/clientList', 'BaseController@clientList');
 
-//サイト法律へのアクセス
-Route::get('/law', 'InformationController@law');
 
-//サイト利用規約へのアクセス
-Route::get('/terms_of_service', 'InformationController@terms_of_service');
-
-//プライバシーへのアクセス
-Route::get('/privacy', 'InformationController@privacy');
-
-//サイト運営会社へのアクセス
-Route::get('/company', 'InformationController@company');
-
-//mypageへのアクセス
 
 //top
 Route::get('/mypage', 'BaseController@mypage');
@@ -106,10 +94,10 @@ Route::post('/pool', 'BaseController@poolCheck');
 Route::post('/done', 'BaseController@poolDone');
 
 
-//サイト概要画面へのアクセス
+//クライアント登録へのアクセス
 Route::get('/client', 'BaseController@client');
 Route::post('/client', 'BaseController@clientCheck');
-Route::post('/client/done', 'BaseController@clientDone');
+Route::post('/client/clientcomplete', 'BaseController@clientDone');
 
 
 //search画面へのアクセス
@@ -134,10 +122,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 
-//いいね
-
-Route::post('product/{id}/favorites', 'FavoriteController@store')->name('favorites');
-Route::post('product/{id}/unfavorites', 'FavoriteController@destroy')->name('unfavorites');
 
 
 
