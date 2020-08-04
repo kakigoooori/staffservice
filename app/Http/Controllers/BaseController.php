@@ -369,13 +369,27 @@ public function client()
     {
         $pool_record = new Pool;
 
-        $pool_record->work = $request->work;
-        $pool_record->price = $request->price;
-        $pool_record->genre  = $request->genre ;
-        $pool_record->start = $request->start;
-        $pool_record->end = $request->end;
-        $pool_record->worknote = $request->worknote;
-        $pool_record->user_id = $request->user_id;
+        $pool_record->entryday = $request->entryday;
+        $pool_record->nickname = $request->nickname;
+        $pool_record->name = $request->name;
+        $pool_record->gender = $request->gender;
+        $pool_record->year = $request->year;
+        $pool_record->month = $request->month;
+        $pool_record->day = $request->day;
+        $pool_record->zip01 = $request->zip01;
+        $pool_record->pref01 = $request->pref01;
+        $pool_record->addr01 = $request->addr01;
+        $pool_record->tel = $request->tel;
+        $pool_record->mobiletel = $request->mobiletel;
+        $pool_record->email = $request->email;
+        $pool_record->mobilemail = $request->mobilemail;
+        $pool_record->job = $request->job;
+        $pool_record->judge = $request->judge;
+        $pool_record->interviewday = $request->interviewday;
+        $pool_record->start_time = $request->start_time;
+        $pool_record->end_time = $request->end_time;
+        $pool_record->place = $request->place;
+        $pool_record->note = $request->note;
         $pool_record->save();
     
 
@@ -391,119 +405,34 @@ public function client()
     public function getSearch(Request $request) {
 
 
-
-        $work = $request->input('work');
-        $price = $request->input('price');
-        $genre1 = $request->input('genre1');
-        $genre2 = $request->input('genre2');
-        $genre3 = $request->input('genre3');
-        $genre4 = $request->input('genre4');
-        $genre5 = $request->input('genre5');
-        $genre6 = $request->input('genre6');
-        $genre7 = $request->input('genre7');
+        $nickname = $request->input('nickname');
+        $judge = $request->input('judge');
+        $place = $request->input('place');
+        $interviewday = $request->input('interviewday');
     
         $query = Pool::query();
 
  
+        if (!empty($nickname)) {
+            $query->where('nickname', 'LIKE', "%{$nickname}%");
+        }
         
-        if (!empty($work)) {
-            $query->where('work', 'LIKE', "%{$work}%");
+        if (!empty($judge)) {
+            $query->where('judge', 'LIKE', "%{$judge}%");
         }
  
-        if (!empty($price)) {
-            $query->where('price', '>=', $price);
+        if (!empty($place)) {
+            $query->where('place', 'LIKE', "%{$place}%");
         }
 
-        
-        if (!empty($genre1)) {
-            $query->where(function($query) use($genre1, $genre2,$genre3,$genre4,$genre5,$genre6,$genre7){
-            $query->where('genre', '=', "$genre1")
-            ->orwhere('genre', '=', "$genre2")
-            ->orwhere('genre', '=', "$genre3")
-            ->orwhere('genre', '=', "$genre4")
-            ->orwhere('genre', '=', "$genre5")
-            ->orwhere('genre', '=', "$genre6")
-            ->orwhere('genre', '=', "$genre7");
-        });
+        if (!empty($interviewday)) {
+            $query->where('interviewday', 'LIKE', "%{$interviewday}%");
         }
-
-        if (!empty($genre2)) {
-            $query->where(function($query) use($genre1, $genre2,$genre3,$genre4,$genre5,$genre6,$genre7){
-            $query->where('genre', '=', "$genre2")
-            ->orwhere('genre', '=', "$genre1")
-            ->orwhere('genre', '=', "$genre3")
-            ->orwhere('genre', '=', "$genre4")
-            ->orwhere('genre', '=', "$genre5")
-            ->orwhere('genre', '=', "$genre6")
-            ->orwhere('genre', '=', "$genre7");
-        });
-        }
-
-        if (!empty($genre3)) {
-            $query->where(function($query) use($genre1, $genre2,$genre3,$genre4,$genre5,$genre6,$genre7){
-            $query->where('genre', '=', "$genre3")
-            ->orwhere('genre', '=', "$genre1")
-            ->orwhere('genre', '=', "$genre2")
-            ->orwhere('genre', '=', "$genre4")
-            ->orwhere('genre', '=', "$genre5")
-            ->orwhere('genre', '=', "$genre6")
-            ->orwhere('genre', '=', "$genre7");
-        });
-        }
-
-        if (!empty($genre4)) {
-            $query->where(function($query) use($genre1, $genre2,$genre3,$genre4,$genre5,$genre6,$genre7){
-            $query->where('genre', '=', "$genre4")
-            ->orwhere('genre', '=', "$genre1")
-            ->orwhere('genre', '=', "$genre2")
-            ->orwhere('genre', '=', "$genre3")
-            ->orwhere('genre', '=', "$genre5")
-            ->orwhere('genre', '=', "$genre6")
-            ->orwhere('genre', '=', "$genre7");
-        });
-          
-        }
-
-        if (!empty($genre5)) {
-            $query->where(function($query) use($genre1, $genre2,$genre3,$genre4,$genre5,$genre6,$genre7){
-            $query->where('genre', '=', "$genre5")
-            ->orwhere('genre', '=', "$genre1")
-            ->orwhere('genre', '=', "$genre2")
-            ->orwhere('genre', '=', "$genre3")
-            ->orwhere('genre', '=', "$genre4")
-            ->orwhere('genre', '=', "$genre6")
-            ->orwhere('genre', '=', "$genre7");
-        });
-            
-        }
-
-        if (!empty($genre6)) {
-            $query->where(function($query) use($genre1, $genre2,$genre3,$genre4,$genre5,$genre6,$genre7){
-            $query->where('genre', '=', "$genre6")
-            ->orwhere('genre', '=', "$genre1")
-            ->orwhere('genre', '=', "$genre2")
-            ->orwhere('genre', '=', "$genre3")
-            ->orwhere('genre', '=', "$genre4")
-            ->orwhere('genre', '=', "$genre5")
-            ->orwhere('genre', '=', "$genre7");
-        });
-        }
-
-        if (!empty($genre7)) {
-            $query->where(function($query) use($genre1, $genre2,$genre3,$genre4,$genre5,$genre6,$genre7){
-            $query->where('genre', '=', "$genre7")
-            ->orwhere('genre', '=', "$genre1")
-            ->orwhere('genre', '=', "$genre2")
-            ->orwhere('genre', '=', "$genre3")
-            ->orwhere('genre', '=', "$genre4")
-            ->orwhere('genre', '=', "$genre5")
-            ->orwhere('genre', '=', "$genre6");
-        });
-        }
+ 
  
         $search = $query->get();
  
-        return view('search/search', compact('search', 'work', 'price','genre1','genre2','genre3','genre4','genre5','genre6','genre7',));
+        return view('search/search', compact('search','nickname','judge', 'place','interviewday'));
 
     }
 
@@ -525,13 +454,26 @@ public function client()
 
             return view('Product/Product',compact('userdata','like'))->with(
               'input', [
-                'work' => $Product_data->work,
-                'price' => $Product_data->price,
-                'genre' => $Product_data->genre,
-                'start' => $Product_data->start,
-                'end' => $Product_data->end,
-                'worknote' => $Product_data->worknote,
-                'user_id' => $Product_data->user_id,
+                'entryday' => $Product_data->entryday,
+                'nickname' => $Product_data->nickname,
+                'name' => $Product_data->name,
+                'gender' => $Product_data->gender,
+                'year' => $Product_data->year,
+                'month' => $Product_data->month,
+                'day' => $Product_data->day,
+                'zip01' => $Product_data->zip01,
+                'pref01' => $Product_data->pref01,
+                'addr01' => $Product_data->addr01,
+                'tel' => $Product_data->tel,
+                'mobiletel' => $Product_data->mobiletel,
+                'email' => $Product_data->email,
+                'job' => $Product_data->job,
+                'judge' => $Product_data->judge,
+                'interviewday' => $Product_data->interviewday,
+                'start_time' => $Product_data->start_time,
+                'end_time' => $Product_data->end_time,
+                'place' => $Product_data->place,
+                'note' => $Product_data->note,
                 'id' => $id,
               ]);
 

@@ -24,11 +24,7 @@ class PoolRequest extends FormRequest
     public function rules()
     {
         return [
-            'work' =>'required',
-            'price' => ['required','regex:/^[0-9]+$/','max:20'],
-            'start' => 'required',
-            'end' => 'required',
-            'worknote' => 'required',
+    
         ];
     }
 }
