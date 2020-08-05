@@ -1,7 +1,6 @@
 @extends('layout/layout')
 @section('content')
 
-
 {{ csrf_field() }}
 <div class="container">
 <div class="row">
