@@ -2,32 +2,25 @@
 @section('content')
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 col-md-offset-2">
-            <div class="panel panel-default">
-            <h2>クライアント新規登録</h2>
-            <br>
-                <div class="panel-body">
-                <form method="post" action="/client" enctype="multipart/form-data">
+<form method="post" action="/client" enctype="multipart/form-data"><br>
+<h2>クライアント新規登録</h2>
 <br>
-                        {{ csrf_field() }}
+<div class="panel-body">
+{{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">クライアント名</label>
+<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+<label for="name" class="col-md-4 control-label">クライアント名</label>
+<div class="col-md-6">
+<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required >
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required >
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('name_kana') ? ' has-error' : '' }}">
+ @if ($errors->has('name'))
+<span class="help-block">
+<strong>{{ $errors->first('name') }}</strong>
+</span>
+@endif
+</div>
+</div>
+<div class="form-group{{ $errors->has('name_kana') ? ' has-error' : '' }}">
         <label for="name_kana"class="col-md-4 control-label">フリガナ</label>
         <div class="col-md-10">
         <input type="text" class="form-control{{ $errors->has('name_kana') ? ' is-invalid' : '' }}" name="name_kana" value="{{ old('name_kana') }}">
@@ -40,7 +33,7 @@
     </div>
                         
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail </label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -57,7 +50,7 @@
                         <div class="office_name">
         <label for="office_name" class=col-md-4 control-label>事業所名</label>
         <div class="col-md-6">
-        <input type="text" class="form-control{{ $errors->has('office_name') ? ' is-invalid' : '' }}" name="office_name" value="{{ old('office_name') }}">
+        <input type="text" class="form-control{{ $errors->has('office_name') ? ' is-invalid' : '' }}" name="office_name" value="{{ old('office_name') }}"required>
         @if ($errors->has('office_name'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('office_name') }}</strong>
@@ -65,22 +58,22 @@
         @endif
     </div>
     </div>
-                      
-    <div class="form-group">
-            <div class="col-md-3 mb-3">
-                <label for="inputAddress01">郵便番号(7桁)</label>
-                <input type="text" name="zip01" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','pref01','addr01');" class="form-control" id="inputAddress01" placeholder="1030013">
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="inputAddress02">都道府県</label>
-                <input type="text" name="pref01" id="inputAddress02" class="form-control" placeholder="東京都">
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="inputAddress03">住所</label>
-                <input type="text" name="addr01" class="form-control" id="inputAddress03" placeholder="中央区日本橋人形町">
-            </div>
-        </div>
-        <!--/住所-->
+    <label for="add01" class=col-md-4 control-label>所在地</label>
+ 
+<!-- ▼郵便番号入力フィールド(7桁) -->
+<div class="col-md-6">  
+<input type="text" name="add01" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','add02','add03');">郵便番号(７桁)
+</div> 
+<!-- ▼住所入力フィールド(都道府県) -->
+<label for="add01" class=col-md-4 control-label>都道府県</label>
+<div class="col-md-6">  
+<input type="text" name="add02" size="20">
+</div> 
+<!-- ▼住所入力フィールド(都道府県以降の住所) -->
+<div class="col-md-6">  
+<label for="add01" class=col-md-4 control-label>以降の住所</label>
+<input type="text" name="add03" size="60">
+</div> 
 
                        
 
@@ -107,12 +100,14 @@
             </span>
         @endif
     </div>
-    <p><b>　契約締結日</b></p>
-    <div class="col-md-6">
-    <input type="date"class="col-md-4 control-label" />
+    
+    <p>　契約締結日</p>
+<div class="col-md-6">   
+<input type="date" name="date" value="{{ old('tel') }}">
+</div>
 
-                        <p><b>職種一覧</b></p>   
-<div class="form-group">              
+                        <p>　職種一覧</p>   
+<div class="col-md-6">              
 <select name="genre" class="form-control">        
 <option value="" selected>　　選択してください</option>
 <option value="営業">営業</option>
@@ -143,7 +138,8 @@
 
                         
                         
-
+</div>
+</div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                             <input type="submit" value="登録" class="btn btn-primary">
@@ -153,7 +149,6 @@
                 
            
         
-    </div>
-</div>
+    
 
-@endsection
+@stop

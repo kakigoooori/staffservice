@@ -7,57 +7,159 @@
 
 <table class="table table-striped">
   <tr>
-    <td>依頼名</td>
+    <td>登録日</td>
     <td>
-    {{ $input['work'] }}
-    <input type="hidden" name="work" value="{{ $input['work'] }}">
+    {{ $input['entryday'] }}
+    <input type="hidden" name="entryday" value="{{ $input['entryday'] }}">
     </td>
   </tr>
 
   <tr>
-    <td>単価</td>
+    <td>担当者</td>
     <td>
-    {{ $input['price'] }}
-    <input type="hidden" name="price" value="{{ $input['price'] }}">
+    {{ $input['nickname'] }}
+    <input type="hidden" name="nickname" value="{{ $input['nickname'] }}">
     </td>
   </tr>
 
   <tr>
-    <td>ジャンル</td>
+    <td>氏名</td>
     <td>
-    {{ $input['genre'] }}
-    <input type="hidden" name="genre" value="{{ $input['genre'] }}">
+    {{ $input['name'] }}
+    <input type="hidden" name="name" value="{{ $input['name'] }}">
     </td>
   </tr>
 
   <tr>
-    <td>施工開始</td>
+    <td>氏名(カナ)</td>
     <td>
-    {{ $input['start'] }}
-    <input type="hidden" name="start" value="{{ $input['start'] }}">
+    {{ $input['phonetic'] }}
+    <input type="hidden" name="phonetic" value="{{ $input['phonetic'] }}">
     </td>
   </tr>
 
   <tr>
-    <td>施工完了</td>
+    <td>性別</td>
     <td>
-    {{ $input['end'] }}
-    <input type="hidden" name="end" value="{{ $input['end'] }}">
+    {{ $input['gender'] }}
+    <input type="hidden" name="gender" value="{{ $input['gender'] }}">
     </td>
   </tr>
 
+  <tr>
+    <td>生年月日</td>
+    <td>
+    {{ $input['year'] }}年{{ $input['month'] }}月{{ $input['day'] }}日
+    <input type="hidden" name="year" value="{{ $input['year'] }}">
+    <input type="hidden" name="month" value="{{ $input['month'] }}">
+    <input type="hidden" name="day" value="{{ $input['day'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>郵便番号</td>
+    <td>
+    {{ $input['zip01'] }}
+    <input type="hidden" name="zip01" value="{{ $input['zip01'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>都道府県</td>
+    <td>
+    {{ $input['pref01'] }}
+    <input type="hidden" name="pref01" value="{{ $input['pref01'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>以降の住所</td>
+    <td>
+    {{ $input['addr01'] }}
+    <input type="hidden" name="addr01" value="{{ $input['addr01'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>電話番号</td>
+    <td>
+    {{ $input['tel'] }}
+    <input type="hidden" name="tel" value="{{ $input['tel'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>携帯電話</td>
+    <td>
+    {{ $input['mobiletel'] }}
+    <input type="hidden" name="mobiletel" value="{{ $input['mobiletel'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>PCメールアドレス</td>
+    <td>
+    {{ $input['email'] }}
+    <input type="hidden" name="email" value="{{ $input['email'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>携帯メールアドレス</td>
+    <td>
+    {{ $input['mobilemail'] }}
+    <input type="hidden" name="mobilemail" value="{{ $input['mobilemail'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>募集媒体</td>
+    <td>
+    {{ $input['job'] }}
+    <input type="hidden" name="job" value="{{ $input['job'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>面接区分</td>
+    <td>
+    {{ $input['judge'] }}
+    <input type="hidden" name="judge" value="{{ $input['judge'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>面接日</td>
+    <td>
+    {{ $input['interviewday'] }}
+    <input type="hidden" name="interviewday" value="{{ $input['interviewday'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>面接時間</td>
+    <td>
+    {{ $input['start_time'] }}～{{ $input['end_time'] }}
+    <input type="hidden" name="start_time" value="{{ $input['start_time'] }}">
+    <input type="hidden" name="end_time" value="{{ $input['end_time'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>面接場所</td>
+    <td>
+    {{ $input['place'] }}
+    <input type="hidden" name="place" value="{{ $input['place'] }}">
+    </td>
+  </tr>
  
   <tr>
-    <td>施工内容</td>
+    <td>備考</td>
     <td>
-    {!! nl2br(e( $input['worknote'] ))!!}
-    <input type="hidden" name="worknote" value="{{ $input['worknote'] }}">
+    {!! nl2br(e( $input['note'] ))!!}
+    <input type="hidden" name="note" value="{{ $input['note'] }}">
     </td>
   </tr>
-
-
-
-  <input type="hidden" name="user_id" value="{{ $input['user_id'] }}">
   
  
 

@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pool extends Model
 {
-    protected $table = 'pool';
+    protected $table = 'prototype';
 
     public function user()
     {

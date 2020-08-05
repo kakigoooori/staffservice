@@ -41,10 +41,10 @@
     <ul class="navbar-nav mr-auto">
      
       <li class="nav-item">
-        <a class="nav-link" href="/pool">投稿する</a>
+        <a class="nav-link" href="/pool">スタッフ登録</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/search">検索リスト</a>
+        <a class="nav-link" href="/search">スタッフ仮登録一覧</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/client">クライアント登録</a>
@@ -57,13 +57,13 @@
           マイページ
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/mypage">top</a>
+          
           <a class="dropdown-item" href="/mypage/toukou">投稿一覧</a>
-          <a class="dropdown-item" href="/mypage/chat">メッセージ</a>
+         
           <a class="dropdown-item" href="/mypage/receive">受信管理</a>
           <a class="dropdown-item" href="/mypage/send">送信管理</a>
-          <a class="dropdown-item" href="/mypage/change">登録内容変更</a>
-          <a class="dropdown-item" href="/mypage/profile">プロフィール</a>
+          <a class="dropdown-item" href="/mypage/change">管理者情報変更</a>
+          
         </div>
       </li>
       </ul>

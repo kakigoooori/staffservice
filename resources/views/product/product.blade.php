@@ -1,5 +1,22 @@
 @extends('layout/layout')
-@section('content')
+@section('content')    
+
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+   
+<form method="post" action="/pool" enctype="multipart/form-data">
+<br>
+<h2>スタッフ本登録</h2>
+@if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+    @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+    @endforeach
+    </ul>
+  </div>
+@endif {{ csrf_field() }}
+<br><br><br>
+
 
 {{ csrf_field() }}
 <div class="container">
@@ -7,141 +24,178 @@
 <div class="col-sm-8">
 <div class="card" >
 
-  <div class="card-header">
-  <h2>{{ $input['work'] }}</h2>
-  </div>
-  <table class="table">
-  <tr>
-    <td>単価</td>
-    <td>
-    {{ $input['price'] }}
-    </td>
-  </tr>
+<p><b>登録日</b></p>
+<div class="form-group">   
+<input type="date" name="entryday" value="{{ $input['entryday'] }}">
+</div>
 
-  <tr>
-    <td>ジャンル</td>
-    <td>
-    {{ $input['genre'] }}
-    </td>
-  </tr>
+<p><b>担当者</b></p>
+<div class="form-group">   
+<input type="text" name="nickname" value="{{ $input['nickname'] }}">
+</div> 
 
-  <tr>
-    <td>施工開始</td>
-    <td>
-    {{ $input['start'] }}
-    </td>
-  </tr>
+<p><b>氏名</b></p>
+<div class="form-group">                        
+  <input type="text" name="name" 
+      @if(!empty($errors->first('name'))) border-danger @endif
+      value="{{ $input['name'] }}">
+      <p>
+        <span class="help-block text-danger">{{$errors->first('name')}}</span>
+     </p>        
+</div>
 
-  <tr>
-    <td>施工完了</td>
-    <td>
-    {{ $input['end'] }}
-    </td>
-  </tr>
-  
-  </table>
 
-  <table class="table">
-  <tr>
-    <td>
-      <h5>施工内容</h5>
-        <div class="card" >{!! nl2br(e( $input['worknote'] ))!!}
-        </div>
-    </td>
-  </tr>
-  </table>
+<p><b>氏名(カナ)</b></p>
+<div class="form-group">                        
+  <input type="text" name="phonetic" placeholder="氏名の間に半角スペース" 
+      @if(!empty($errors->first('phonetic '))) border-danger @endif
+      value="{{ $input['phonetic'] }}">
+      <p>
+        <span class="help-block text-danger">{{$errors->first('phonetic')}}</span>
+     </p>        
+</div>
 
-  <table class="table">
-  <td>
-@if($like->users()->where('user_id', Auth::id())->exists())
-<div class="col-md-4"> 
-<form action="{{ route('unfavorites', $input['id']) }}" method="POST">
-    {{ csrf_field() }}
-      <input type="submit" value="イイね！を取り消す" class="fas btn btn-danger">
-    </form>
-  </div>
-  @else
-  <div class="col-md-4">
-  <form action="{{ route('favorites', $input['id']) }}" method="POST">
-    {{ csrf_field() }}
-      <input type="submit" value="イイね！" class="fas btn btn-success">
-    </form>
-     </div>
-  @endif
-  <p>　いいね数：{{ $like->users()->count() }}</p>
-  </td>
-
-                    
-<td>
-<form method="post" action=/product/check/{{ $input['id'] }}>
-{{ csrf_field() }}
-<input type="hidden" name="user_id" value="{{ $userdata[0]->id }}">
-<input type="hidden" name="login_id" value="{{ Auth::user()->id }}">
-<input type="hidden" name="pool_id" value="{{ $input['id'] }}">
-<input type="submit" value="取引申請を送る" class="btn btn-primary">
-</form>
-</td>
-</tr>
-</table>
+<p><b>性別</b></p>
+<div class="form-group">                               
+<select name="gender" >
+<option value="{{ $input['gender'] }}">{{ $input['gender'] }}</option>
+<option value="女">女</option>
+<option value="男">男</option>
+</select> 
+                                    
+@if ($errors->has('gender'))
+<span class="help-block">
+<strong>{{ $errors->first('gender') }}</strong>
+</span>
+ @endif
 
 </div>
- </div>
 
- <div class="col-sm-4 text-center">
-    <div class="card">
-       @if( $userdata[0]->image  == NULL)
-       <figure>
-      <img src="{{ asset('/img/base.jpg')}}" width="100px" height="100px">
-      </figure>
-      @else
-      <figure>
-      <img src="/storage/images/{{ $userdata[0]->id }}.jpg" width="125px" height="125px">
-      </figure>
-      @endif
+<p><b>生年月日</b></p>
+<div class="form-group">                       
+<input type="text" name="year" size="2" value="{{ $input['year'] }}">年
+<input type="text" name="year" size="1" maxlength="2" value="{{ $input['month'] }}">月
+<input type="text" name="year" size="1" maxlength="2" value="{{ $input['day'] }}">日  
+</div> 
 
-    
-      <P>出品者の一言</P>
+<p><b>住所</b></p>
+<!-- ▼郵便番号入力フィールド(7桁) -->
+<div class="form-group"> 
+<input type="text" name="zip01" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','pref01','addr01');" value="{{ $input['zip01'] }}">郵便番号(７桁) 
+</div> 
+<!-- ▼住所入力フィールド(都道府県) -->
+<div class="form-group">  
+<input type="text" name="pref01" size="20" value="{{ $input['pref01'] }}">都道府県
+</div> 
+<!-- ▼住所入力フィールド(都道府県以降の住所) -->
+<div class="form-group">  
+<input type="text" name="addr01" size="60" value="{{ $input['addr01'] }}">以降の住所
+</div> 
 
-      <P>{!! nl2br(e(  $userdata[0]->note ))!!}</P>
-     
-      <table>
- 
-    <a href="/profile/{{ $userdata[0]->id }}" class="btn btn-warning">プロフィールを見る</a>
-    
+<p><b>電話番号</b></p>
+<div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}">
+<input id="tel" type="tel"  name="tel" value="{{ $input['tel'] }}" >
 
-    <table class="table">
-    <a href="/mypage/chat/{{ $userdata[0]->id }}" class="btn btn-primary">メッセージを送信する</a>
-    <tr>
-    <td>
-    <form method="get" action=#>
-    <input type="submit" value="違反通告" class="btn btn-danger">
-    </form>
-    </td>
+@if ($errors->has('tel'))
+<span class="help-block">
+<strong>{{ $errors->first('tel') }}</strong>
+ </span>
+@endif
+</div>
 
-    <td>
-    <form method="get" action=#>
-    <input type="submit" value="イイね！" class="btn btn-success">
-    </form>
-    </td>
-    </tr>
-    </table>
+<p><b>携帯電話</b></p>
+<div class="form-group{{ $errors->has('mobiletel') ? ' has-error' : '' }}">
+<input id="mobiletel" type="mobiletel"  name="mobiletel" value="{{ $input['mobiletel'] }}" >
 
-  
-    </div>
-     <br>
-    <div class="card">
-      <p>余りのスペース（広告等）</P>
-    </div>
- </div>
+@if ($errors->has('mobiletel'))
+<span class="help-block">
+<strong>{{ $errors->first('mobiletel') }}</strong>
+ </span>
+@endif
+</div>
+
+<p><b>PCメールアドレス</b></p>
+<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+<input id="email" type="mobiletel"  name="email" value="{{ $input['email'] }}" >
+
+@if ($errors->has('email'))
+<span class="help-block">
+<strong>{{ $errors->first('email') }}</strong>
+ </span>
+@endif
+</div>
+
+<p><b>携帯メールアドレス</b></p>
+<div class="form-group{{ $errors->has('mobilemail') ? ' has-error' : '' }}">
+<input id="mobilemail" type="mobilemail"  name="mobilemail" value="{{ $input['mobilemail'] }}" >
+
+@if ($errors->has('mobilemail'))
+<span class="help-block">
+<strong>{{ $errors->first('mobilemail') }}</strong>
+ </span>
+@endif
+</div>
 
 
+<p><b>募集媒体</b></p>
+<div class="form-group">                               
+<select name="job"  >
+<option value="{{ $input['job'] }}" selected>{{ $input['job'] }}</option>
+<option value="doda">doda</option>
+<option value="リクルート">リクルート</option>
+<option value="マイナビ">マイナビ</option>
+<option value="ハローワーク">ハローワーク</option>
+<option value="エン転職">エン転職</option>
+<option value="その他">その他</option>
+</select>
+</div>    
 
+<p><b>面接区分</b></p>
+<div class="form-group">                               
+<select name="judge" >
+<option value="{{ $input['judge'] }}" selected>{{ $input['judge'] }}</option>
+<option value="初回審査">初回審査</option>
+<option value="不採用">不採用</option>
+<option value="審査中">審査中</option>
+<option value="その他">その他</option>
+</select>    
+</div>
 
- </div>
- </div>
+<p><b>面接日</b></p>
+<div class="form-group">   
+<input type="date" name="interviewday" value="{{ $input['interviewday'] }}">
+</div>
 
- <br>
-</body>
-</html>
+<p><b>面接時間　※10分刻みの入力</b></p>
+<div class="form-group">           
+<input type="time" name="start_time" step="600" value="{{ $input['start_time'] }}">～<input type="time"  name="end_time" step="600" value="{{ $input['end_time'] }}">
+</div>
 
+<p><b>面接場所</b></p>
+<div class="form-group">                               
+<select name="place" >
+<option value="{{ $input['place'] }}" selected>{{ $input['place'] }}</option>
+<option value="新宿 本社">新宿 本社</option>
+<option value="渋谷">渋谷</option>
+<option value="池袋">池袋</option>
+<option value="大宮">大宮</option>
+<option value="横浜">横浜</option>
+</select>    
+</div>
+
+<p><b>備考</b></p>
+<div class="form-group" >
+<textarea name="note" rows="4" cols="60" 
+      @if(!empty($errors->first('note'))) border-danger @endif
+      value="" placeholder="例：空き缶拾い">{{ old('note') }}
+</textarea>
+      <p>
+        <span class="help-block text-danger">{{$errors->first('note')}}</span>
+     </p>   
+</div>
+
+<br/><br/>        
+<input type="submit" value="投稿" class="btn btn-primary">    
+</form>
+<br>
 @stop
