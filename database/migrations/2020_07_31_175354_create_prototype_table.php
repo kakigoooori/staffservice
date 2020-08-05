@@ -19,6 +19,7 @@ class CreatePrototypeTable extends Migration
                 $table->string('entryday');
                 $table->string('nickname');
                 $table->string('name');
+                $table->string('phonetic');
                 $table->string('gender');
                 $table->string('year');
                 $table->string('month');

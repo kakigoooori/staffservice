@@ -27,13 +27,23 @@
 <input type="text" name="nickname" value="{{ Auth::user()->nickname }}">
 </div> 
 
-<p><b>氏名</b></p>
+<p><b>氏名(漢字)</b></p>
 <div class="form-group">                        
   <input type="text" name="name" placeholder="氏名の間に半角スペース" 
       @if(!empty($errors->first('name'))) border-danger @endif
       value="{{ old('name') }}">
       <p>
         <span class="help-block text-danger">{{$errors->first('name')}}</span>
+     </p>        
+</div>
+
+<p><b>氏名(カナ)</b></p>
+<div class="form-group">                        
+  <input type="text" name="phonetic" placeholder="氏名の間に半角スペース" 
+      @if(!empty($errors->first('phonetic'))) border-danger @endif
+      value="{{ old('phonetic') }}">
+      <p>
+        <span class="help-block text-danger">{{$errors->first('phonetic')}}</span>
      </p>        
 </div>
 
