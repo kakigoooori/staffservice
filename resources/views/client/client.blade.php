@@ -33,7 +33,7 @@
     </div>
                         
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail </label>
+                            <label for="email" class="col-md-4 control-label">メールアドレス </label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -65,13 +65,13 @@
 <input type="text" name="add01" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','add02','add03');">郵便番号(７桁)
 </div> 
 <!-- ▼住所入力フィールド(都道府県) -->
-<label for="add01" class=col-md-4 control-label>都道府県</label>
+<label for="add02" class=col-md-4 control-label>都道府県</label>
 <div class="col-md-6">  
 <input type="text" name="add02" size="20">
 </div> 
 <!-- ▼住所入力フィールド(都道府県以降の住所) -->
 <div class="col-md-6">  
-<label for="add01" class=col-md-4 control-label>以降の住所</label>
+<label for="add03" class=col-md-4 control-label>以降の住所</label>
 <input type="text" name="add03" size="60">
 </div> 
 
@@ -103,7 +103,7 @@
     
     <p>　契約締結日</p>
 <div class="col-md-6">   
-<input type="date" name="date" value="{{ old('tel') }}">
+<input type="date" name="date" value="{{ old('date') }}">
 </div>
 
                         <p>　職種一覧</p>   
@@ -137,7 +137,7 @@
                         </div>
 
                         
-                        
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 </div>
 </div>
                         <div class="form-group">

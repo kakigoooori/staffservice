@@ -46,12 +46,38 @@
       <li class="nav-item">
         <a class="nav-link" href="/search">スタッフ仮登録一覧</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/client">クライアント登録</a>
+
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          クライアント
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
+        <a class="dropdown-item" href="/client">クライアント登録</a>
+         
+        <a class="dropdown-item" href="/clientList">クライアント一覧</a>
+         
+
+        <a class="dropdown-item" href="/clientworkList">案件一覧</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/clientList">クライアント一覧</a>
-      </li>
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           マイページ

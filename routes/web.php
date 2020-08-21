@@ -25,8 +25,6 @@ Route::get('/top', 'BaseController@getTop');
 Route::get('/alert', 'BaseController@alert');
 
 
-//クライアントリストへのアクセス
-Route::get('/clientList', 'BaseController@clientList');
 
 
 
@@ -46,11 +44,6 @@ Route::post('/mypool_edit/done/{id}', 'BaseController@mypoolEditdone');
 Route::get('/mypool_delete/{id}', 'BaseController@mypoolDelete');
 Route::post('/mypool_delete/done/{id}', 'BaseController@mypoolDeletedone');
 
-//メッセージ
-
-Route::get('/mypage/chat/{id}', 'BaseController@mypagechat')->name('chat');
-//メッセージ機能
-Route::post('/add', 'BaseController@add')->name('add');
 
 
 //受信
@@ -94,14 +87,44 @@ Route::post('/pool', 'BaseController@poolCheck');
 Route::post('/done', 'BaseController@poolDone');
 
 
+
 //クライアント登録へのアクセス
 Route::get('/client', 'BaseController@client');
 Route::post('/client', 'BaseController@clientCheck');
 Route::post('/client/clientcomplete', 'BaseController@clientDone');
 
+// クライアント詳細アクセス
+Route::get('/clientMore/{id}','BaseController@clientMore')->name('clientMorepage');
+Route::get('/csv/downloadclient/{id}','BaseController@downloadclient');
+
+//クライアント編集
+Route::get('/client_edit/{id}', 'BaseController@clientEdit');
+Route::post('/client_edit/{id}', 'BaseController@clientEditcheck');
+Route::post('/client_edit/done/{id}', 'BaseController@clientEditdone');
+
+
+//クライアント削除
+Route::get('/client_delete/{id}', 'BaseController@clientDelete');
+Route::post('/clientDeletedone/{id}', 'BaseController@clientDeletedone');
+
+
+//案件登録画面へのアクセス
+Route::get('/clientWorks/{id}', 'BaseController@clientWorks');
+Route::post('/clientWorks', 'BaseController@clientWorksCheck');
+Route::post('/clientWorks/clientWorks_complete', 'BaseController@clientWorksDone');
+
+// クライアント案件一覧
+Route::get('/clientworkList','BaseController@clientworkList')->name('clientWorkListpage');
+
+// 案件詳細確認ｃｓｖ
+Route::get('/clientworkMore/{id}','BaseController@clientworkMore')->name('clientworkMorepage');
+Route::get('/csv/downloadworks/{id}','BaseController@downloadworks');
 
 //search画面へのアクセス
 Route::get('/search', 'BaseController@getSearch');
+
+//クライアントリスト画面へのアクセス
+Route::get('/clientList', 'BaseController@clientList');
 
 //商品画面の表示
 Route::get('/product/{id}', 'BaseController@getProduct')->name('productpage');
@@ -120,6 +143,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //logout
 Route::get('/logout', 'Auth\LoginController@logout');
+
 
 
 
