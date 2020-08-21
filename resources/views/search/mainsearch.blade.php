@@ -276,7 +276,7 @@
 <table class="table table-hover">
     <tr>
     <th><p><input type="submit" value="検索する" formaction="{{url('/mainsearch')}}" class="btn btn-primary"></p></th>
-    <th><p><input type="submit" value="CSV download その1" formaction="{{url('/csv/download1')}}"  class="btn btn-primary" target="_blank" ></p></th>
+    <th><p><input type="submit" value="CSV download その1" formaction="{{url('/csv/staffdownload')}}"  class="btn btn-primary" target="_blank" ></p></th>
     </tr>
     </table>
 </form>

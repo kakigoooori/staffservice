@@ -119,7 +119,7 @@ Route::get('/search', 'BaseController@getSearch');
 Route::get('/mainsearch', 'BaseController@mainSearch');
 
 //csv
-Route::get('csv/download1', 'BaseController@download1');
+Route::get('csv/staffdownload', 'BaseController@staffdownload');
 
 
 //本登録の表示

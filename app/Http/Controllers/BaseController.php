@@ -526,7 +526,7 @@ public function client()
         }
 
 
-        private function csvcolmns()
+        private function staffcsvcolmns()
         {
             $csvlist = array(
                 'name' => '名前',
@@ -536,7 +536,7 @@ public function client()
         }
 
         
-public function download1(Request $request)
+public function staffdownload(Request $request)
 {
     $id = $request->input('id');
     $id2 = $request->input('id2');
@@ -552,7 +552,7 @@ public function download1(Request $request)
     $station = $request->input('station');
 
     // 出力項目定義
-    $csvlist = $this->csvcolmns(); //auth_information + profiles
+    $csvlist = $this->staffcsvcolmns(); //auth_information + profiles
 
     // ファイル名
     $filename = "auth_info_profiles_".date('Ymd').".csv";
