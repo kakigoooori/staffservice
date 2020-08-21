@@ -46,7 +46,10 @@
         <a class="nav-link" href="/pool">投稿する</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/search">検索リスト</a>
+        <a class="nav-link" href="/search">仮登録一覧</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/mainsearch">本登録一覧</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/client">サイト概要</a>

@@ -3,16 +3,9 @@
 
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
    
-<form method="post" action="done/{id}" enctype="multipart/form-data">
+<form method="post" action="/salary/done/{{$input['id'] }}" enctype="multipart/form-data">
 <br>
 <h2>スタッフ本登録(仮登録で未入力の項目に記入をしてください)</h2>
-
-@if (session('success'))
-<div class="alert alert-danger">
-    {{ session('success') }}
-</div>
-@endif
-
 <div class="container">
 <div class="row">
 <div class="col-sm-5">
@@ -32,7 +25,7 @@
 
 <p><b>登録日</b></p>
 <div class="form-group">   
-<input type="date" name="entryday" value="<?php echo date('Y-m-d');?>">
+<input type="date" name="entryday" value="{{ $input['entryday'] }}">
 </div>
 
 <p><b>氏名</b></p>
@@ -68,8 +61,8 @@
 <strong>{{ $errors->first('gender') }}</strong>
 </span>
  @endif
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="consort" value="配偶者あり">配偶者あり
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="parent" value="有">子供有
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="consort" value="{{ $input['consort'] }}">配偶者あり
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="parent" value="{{ $input['parent'] }}">子供有
 </div>
 
 <p><b>生年月日</b></p>
@@ -77,7 +70,8 @@
 <input type="text" name="year" size="2" value="{{ $input['year'] }}">年
 <input type="text" name="month" size="1" maxlength="2" value="{{ $input['month'] }}">月
 <input type="text" name="day" size="1" maxlength="2" value="{{ $input['day'] }}">日
-<input type="hidden" name="age" value="{{ \Carbon\Carbon::createFromDate($input['year'],$input['month'],$input['day'])->age }}">{{ \Carbon\Carbon::createFromDate($input['year'],$input['month'],$input['day'])->age }}歳
+<input type="hidden" name="age" value="{{ \Carbon\Carbon::createFromDate($input['year'],$input['month'],$input['day'])->age }}">
+{{ \Carbon\Carbon::createFromDate($input['year'],$input['month'],$input['day'])->age }}歳
 </div> 
 
 
@@ -99,9 +93,9 @@
 <p><b>最寄り駅</b></p>
 <div class="form-group">
 <div class="form-group">                               
-<input id="line" type="text" size="10" placeholder="JR山手線" name="line" value="{{ old('line') }}">沿線名
+<input id="station" type="text" size="10" placeholder="JR山手線" name="line" value="{{ $input['line'] }}" >沿線名
 </div>    
-<input id="station" type="text" placeholder="新宿"  name="station" value="{{ old('station') }}">駅
+<input id="station" type="text" placeholder="新宿"  name="station" value="{{ $input['station'] }}" >駅
 
 @if ($errors->has('station'))
 <span class="help-block">
@@ -156,7 +150,7 @@
 
 <p><b>緊急連絡先</b></p>
 <div class="form-group{{ $errors->has('emergencytel') ? ' has-error' : '' }}">
-<input id="emergencytel" type="tel"  name="emergencytel" value="{{ old('emergencytel') }}">
+<input id="emergencytel" type="tel"  name="emergencytel" value="{{ $input['emergencytel'] }}">
 
 @if ($errors->has('emergencytel'))
 <span class="help-block">
@@ -168,7 +162,7 @@
 
 <p><b>入社日</b></p>
 <div class="form-group">   
-<input type="date" name="joincompany" value="<?php echo date('Y-m-d');?>">
+<input type="date" name="joincompany" value="{{ $input['joincompany'] }}">
 </div>
 
 
@@ -183,13 +177,13 @@
   
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" href="">業務・資格</a>
+    <a class="nav-link" href=/genuine/{{$input['id']}}>業務・資格</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href=/salary/{{$input['id']}}>給与・保険</a>
+    <a class="nav-link active" href="">給与・保険</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href=/famiry/{{$input['id']}}>家族</a>
+    <a class="nav-link" href=/family/{{$input['id']}}>家族</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href=/hope/{{$input['id']}}>希望</a>
@@ -202,154 +196,72 @@
   </li>
 </ul>
 
-<p><b>担当者</b></p>
+
+<p><b>基本給</b></p>
 <div class="form-group">   
-<input type="text" name="nickname" value="{{ $input['nickname'] }}">
+<input type="text" name="basic" value="">
 </div>
-
-<div class="row">
-
-<div class="col-sm-8">
-<div class="card">
-
-<p><b>業務実績 &nbsp;(直近の５件)</b></p>
+<p><b>手当</b></p>
 <div class="form-group">   
-<input type="text" name="performance1" value="{{ old('performance1') }}" size="30" placeholder="例：医療サービスの法人営業">
+<input type="text" name="allowance" value="">
 </div>
+
+
+
+
+<p><b>保険者番号 </b></p>
 <div class="form-group">   
-<input type="text" name="performance2" value="{{ old('performance2') }}" size="30">
+<input type="text" name="insurance" value="{{ old('performance1') }}" size="30" >
 </div>
+<p><b>マイナンバー </b></p>
 <div class="form-group">   
-<input type="text" name="performance3" value="{{ old('performance3') }}" size="30">
-</div>
-<div class="form-group">   
-<input type="text" name="performance4" value="{{ old('performance4') }}" size="30">
-</div>
-<div class="form-group">   
-<input type="text" name="performance5" value="{{ old('performance5') }}" size="30">
-</div>
-
-
-</div>
+<input type="text" name="mynumber" value="{{ old('performance1') }}" size="30" >
 </div>
 
 
 
-<div class="col-sm4">
-<div class="card">
 
-<p><b>評価</b></p>
 
-<div class="form-group">                               
-<b>&nbsp;&nbsp;ランク:</b><select name="rank">
-<option value="" selected>未選択</option>
-<option value="A">A</option>
-<option value="B">B</option>
-<option value="C">C</option>
-<option value="D">D</option>
-<option value="E">E</option>
-</select>    
-</div>
-<div class="form-group">   
-<b>&nbsp;&nbsp;&nbsp;&nbsp;総合評価:</b><input type="text" name="score" value="{{ old('score') }}" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
-</div>
-<div class="form-group">   
-<b>&nbsp;&nbsp;&nbsp;PCスキル:</b><input type="text" name="pc" value="{{ old('pc') }}" size="2">
-</div>
-<div class="form-group">   
-<b>基本マナー:</b><input type="text" name="manners" value="{{ old('manners') }}" size="2">
-</div>
-<div class="form-group">   
-<b>&nbsp;&nbsp;&nbsp;&nbsp;一般常識:</b><input type="text" name="sensible" value="{{ old('sensible') }}" size="2">
-</div>
 
-</div>
-</div>
-
-</div>
 
 <p></p>
 
 
 <div class="card">
-
+<p><b>給与振込先</b></p>
 <table>
 <tr>
-        <th><p><b>資格</b></p></th>
-        <th><p><b>習得年月</b></p></th>
+        <th><p><b>金融機関名</b></p></th>
+        <th><p><b>店名</b></p></th>
+        <th><p><b>口座番号</b></p></th>
+        <th><p><b>口座名義(フリガナ)</b></p></th>
 </tr>
 <tr>
 <th>
 <div class="form-group">   
-<input type="text" name="certification1" value="{{ old('certification1') }}" size="35">
+<input type="text" name="bankname" value="{{ old('certification1') }}" size="10">
 </div>
 </th>
 <th>
 <div class="form-group">   
-<input type="text" name="learn" value="{{ old('learn1') }}">
-</div>
-</th>
-</tr>
-<tr>
-<th>
-<div class="form-group">   
-<input type="text" name="certification2" value="{{ old('certification2') }}"size="35">
+<input type="text" name="storename" value="{{ old('learn1') }}"size="10">
 </div>
 </th>
 <th>
 <div class="form-group">   
-<input type="text" name="learn" value="{{ old('learn2') }}">
-</div>
-</th>
-</tr>
-<tr>
-<th>
-<div class="form-group">   
-<input type="text" name="certification3" value="{{ old('certification3') }}" size="35">
+<input type="text" name="account_number" value="{{ old('learn1') }}"size="10">
 </div>
 </th>
 <th>
 <div class="form-group">   
-<input type="text" name="learn" value="{{ old('learn3') }}">
-</div>
-</th>
-</tr>
-<tr>
-<th>
-<div class="form-group">   
-<input type="text" name="certification4" value="{{ old('certification4') }}" size="35">
-</div>
-</th>
-<th>
-<div class="form-group">   
-<input type="text" name="learn4" value="{{ old('learn5') }}">
-</div>
-</th>
-</tr>
-<tr>
-<th>
-<div class="form-group">   
-<input type="text" name="certification5" value="{{ old('certification5') }}" size="35">
-</div>
-</th>
-<th>
-<div class="form-group">   
-<input type="text" name="learn5" value="{{ old('learn5') }}">
+<input type="text" name="account_name" value="{{ old('learn1') }}">
 </div>
 </th>
 </tr>
 
+
 </table>
-<p><b>特技</b></p>
-<div class="form-group">   
-<input type="text" name="skill1" value="{{ old('skill1') }}" size="35">
-</div>
-<div class="form-group">   
-<input type="text" name="skill2" value="{{ old('skill2') }}" size="35">
-</div>
-<div class="form-group">   
-<input type="text" name="skill3" value="{{ old('skill3') }}" size="35">
-</div>
+
 
 </div>
 
@@ -358,7 +270,7 @@
 <div class="form-group" >
 <textarea name="note" rows="6" cols="60" 
       @if(!empty($errors->first('note'))) border-danger @endif
-      value="" placeholder="例：子供ころから野球チームにいたので集団行動が得意です">{{ old('note') }}
+      value="" placeholder="例：令和２年１月給与から、リーダ手当で10000円">{{ old('note') }}
 </textarea>
       <p>
         <span class="help-block text-danger">{{$errors->first('note')}}</span>
