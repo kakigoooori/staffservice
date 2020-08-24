@@ -33,6 +33,8 @@ Route::get('/mypage', 'BaseController@mypage');
 
 //投稿一覧
 Route::get('/mypage/toukou', 'BaseController@mypagetoukou');
+// matter
+Route::get('/mypage/toukou', 'BaseController@clientmatter');
 
 //投稿編集
 Route::get('/mypool_edit/{id}', 'BaseController@mypoolEdit');

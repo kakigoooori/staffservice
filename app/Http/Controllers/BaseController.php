@@ -490,7 +490,28 @@ public function downloadclient($id)
                     return view('alert/alert');
         
                 }
+          // ログインしていたら、mypageを表示
         
+
+            }
+
+            
+            public function clientMatter(Request $request)
+    {
+            $client_id = $request->input('cient_id');
+
+            $query = Clientworks::query();
+
+            //user_idとIDが一致したとき表示する。
+            
+            if (empty($client_id)) {
+                $query->where('client_id', '=', (client::id()));
+            }
+
+            $client = $query->get();
+
+            return view('client/clientMore',compact('client','client_id'));
+         
     }
 
     //client edit 画面へのログイン
