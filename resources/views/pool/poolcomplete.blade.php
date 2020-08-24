@@ -31,7 +31,11 @@
   </tr>
 
   <tr>
+<<<<<<< HEAD
+    <td>氏名(カナ)</td>
+=======
     <td>氏名(シメイ)</td>
+>>>>>>> origin/master
     <td>
     {{ $input['phonetic'] }}
     <input type="hidden" name="phonetic" value="{{ $input['phonetic'] }}">

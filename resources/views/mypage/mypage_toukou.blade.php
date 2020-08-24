@@ -7,9 +7,7 @@
   <li class="nav-item">
     <a class="nav-link active" href=/mypage/toukou>投稿一覧</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href=/mypage/chat/{{ Auth::user()->id }}>メッセージ</a>
-  </li>
+  
   <li class="nav-item">
     <a class="nav-link" href=/mypage/receive>受信管理</a>
   </li>
@@ -19,9 +17,7 @@
   <li class="nav-item">
     <a class="nav-link" href=/mypage/change>登録内容変更</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href=/mypage/profile>プロフィール</a>
-  </li>
+ 
 </ul>
 
 <h2>投稿一覧</h2>

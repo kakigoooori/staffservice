@@ -45,6 +45,7 @@
      </p>        
 </div>
 
+
 <p><b>氏名(カナ)</b></p>
 <div class="form-group">                        
   <input type="text" name="phonetic" placeholder="氏名の間に半角スペース" 
