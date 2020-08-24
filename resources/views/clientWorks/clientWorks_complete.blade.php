@@ -5,12 +5,13 @@
 <form method="post" action="/clientWorks/clientWorks_complete" id="create_form" enctype="multipart/form-data">
 
 {{ csrf_field() }}
+<input type="hidden" name="client_id" value="{{$input['client_id']}}">
 
 <table class="table table-striped">
   <tr>
     <td>案件名</td>
     <td>
-    {{ $input['name'] }}
+    {{ $input['name'] }}{{$input['client_id']}}
     <input type="hidden" name="name" value="{{ $input['name'] }}">
     </td>
   </tr>

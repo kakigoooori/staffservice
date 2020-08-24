@@ -83,15 +83,15 @@
   <p><a class="btn btn-primary" href=/csv/downloadclient/{{$input['id'] }} target="_blank"> クライアント情報CSV化</a></p>
 
 <td>
-   <a href="/clientWorks/clientWorks/{{$input['id'] }}" class="btn btn-primary" value="">
+   <a href="/clientWorks/{{$input['id'] }}" class="btn btn-primary" value="">
    このクライアントの案件登録する
     </a>
-<form method="post" action=/clientWorks/clientWorks>
+
 {{ csrf_field() }}
 
 
 
-</form>
+
 
 
 

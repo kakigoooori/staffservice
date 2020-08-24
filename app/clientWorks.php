@@ -4,7 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class clientWorks extends Model
+class ClientWorks extends Model
 {
     protected $table = 'clientWorks';
+
+
+    public function client()
+    {
+return $this->belongsTo('App\Client');
+
+    }
 }

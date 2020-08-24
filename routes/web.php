@@ -103,6 +103,7 @@ Route::post('/client_edit/{id}', 'BaseController@clientEditcheck');
 Route::post('/client_edit/done/{id}', 'BaseController@clientEditdone');
 
 
+
 //クライアント削除
 Route::get('/client_delete/{id}', 'BaseController@clientDelete');
 Route::post('/clientDeletedone/{id}', 'BaseController@clientDeletedone');
@@ -127,7 +128,50 @@ Route::get('/search', 'BaseController@getSearch');
 Route::get('/clientList', 'BaseController@clientList');
 
 //商品画面の表示
+
+//仮登録検索画面へのアクセス
+Route::get('/search', 'BaseController@getSearch');
+
+//本登録検索画面へのアクセス
+Route::get('/mainsearch', 'BaseController@mainSearch');
+
+//csv
+Route::get('csv/staffdownload', 'BaseController@staffdownload');
+
+
+//本登録の表示
+
 Route::get('/product/{id}', 'BaseController@getProduct')->name('productpage');
+Route::post('/product/done/{id}', 'BaseController@productDone');
+
+//salary
+Route::get('/salary/{id}', 'BaseController@getsalary');
+Route::post('/salary/done/{id}', 'BaseController@salarydone');
+
+//genuine
+Route::get('/genuine/{id}', 'BaseController@getgenuine');
+Route::post('/genuine/done/{id}', 'BaseController@skilldone');
+
+//family
+Route::get('/family/{id}', 'BaseController@getfamily');
+Route::post('/family/done/{id}', 'BaseController@familydone');
+
+//hope
+Route::get('/hope/{id}', 'BaseController@gethope');
+Route::post('/hope/done/{id}', 'BaseController@hopedone');
+
+
+//agreement
+Route::get('/agreement/{id}', 'BaseController@getagreement');
+Route::post('/agreement/done/{id}', 'BaseController@agreementdone');
+
+
+//memo
+Route::get('/memo/{id}', 'BaseController@getmemo');
+Route::post('/memo/done/{id}', 'BaseController@memodone');
+
+
+
 //商品購入確認画面
 Route::post('/product/check/{id}', 'BaseController@ProductCheck');
 

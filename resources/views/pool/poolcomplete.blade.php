@@ -23,7 +23,7 @@
   </tr>
 
   <tr>
-    <td>氏名</td>
+    <td>氏名(漢字)</td>
     <td>
     {{ $input['name'] }}
     <input type="hidden" name="name" value="{{ $input['name'] }}">
@@ -31,7 +31,11 @@
   </tr>
 
   <tr>
+<<<<<<< HEAD
     <td>氏名(カナ)</td>
+=======
+    <td>氏名(シメイ)</td>
+>>>>>>> origin/master
     <td>
     {{ $input['phonetic'] }}
     <input type="hidden" name="phonetic" value="{{ $input['phonetic'] }}">
@@ -53,6 +57,7 @@
     <input type="hidden" name="year" value="{{ $input['year'] }}">
     <input type="hidden" name="month" value="{{ $input['month'] }}">
     <input type="hidden" name="day" value="{{ $input['day'] }}">
+    &nbsp;{{ \Carbon\Carbon::createFromDate($input['year'],$input['month'],$input['day'])->age }}歳
     </td>
   </tr>
 

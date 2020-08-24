@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\PasswordResetNotification;
 
+
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -76,4 +78,8 @@ class User extends Authenticatable
     {
       $this->notify(new PasswordResetNotification($token));
     }
+
+
+
+
 }

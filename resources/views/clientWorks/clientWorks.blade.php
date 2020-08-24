@@ -15,6 +15,9 @@
   </div>
 @endif {{ csrf_field() }}
 <br><br><br>
+
+<input type="hidden" name="client_id" value="{{ $aaa }}">
+
 <p><b>案件名</b></p>
 <div class="form-group">                        
   <input type="text" name="name"  class="form-control 
