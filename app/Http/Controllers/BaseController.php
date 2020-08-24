@@ -1073,7 +1073,7 @@ public function staffdownload(Request $request)
                 return back()->with('success', '基本情報を記入し更新を押してください。');
             }
 
-            return view('Product/family',compact('skilldata',))->with(
+            return view('Product/family',compact('skilldata'))->with(
               'input', [
                 'entryday' => $genuine_data->entryday,
                 'name' => $genuine_data->name,
