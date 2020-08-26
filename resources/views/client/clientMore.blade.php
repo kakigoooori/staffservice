@@ -4,7 +4,7 @@
 {{ csrf_field() }}
 <div class="container">
 <div class="row">
-<div class="col-sm-8">
+<div class="col-sm-12">
 <div class="card" >
 
   <div class="card-header">
@@ -89,44 +89,9 @@
 
 {{ csrf_field() }}
 
-
-
-
-
-
-
-
-</td>
-</tr>
-</table>
-
-<h2>投稿一覧</h2>
-<br/>
-<p>自分が投稿した仕事です</p>
-
-@if ($client->count())
- 
-<table class="table table-hover">
-    <tr>
-        <th>案件名</th>
-        <th>値段</th>
-        <th>詳細</th>
-        <th>編集</th>
-        <th>削除</th>
-    </tr>
-    @foreach ($client as $menu)
-    <tr>
-        <td>{{ $menu->name }}</td>
-        <td>{{ $menu->price }}</td>
-        <td><a href="/product/{{ $menu->id }}" class="btn btn-success">確認する</a></td>
-        <td><a href="/mypool_edit/{{ $menu->id }}" class="btn btn-info">編集する</a></td>
-        <td><a href="/mypool_delete/{{ $menu->id }}" class="btn btn-danger">削除する</a></td>
-    </tr>
-    @endforeach
-</table>
- 
-@else
-<p>見つかりませんでした。</p>
-@endif
+</div>
+</div>
+</div>
+</div>
 
  @stop

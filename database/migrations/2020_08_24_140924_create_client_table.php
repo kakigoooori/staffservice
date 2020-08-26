@@ -24,7 +24,7 @@ class CreateClientTable extends Migration
             $table->string('add03');
             $table->integer('tel');
             $table->string('url');
-            $table->timestamps('date');
+            $table->string('date');
             $table->string('genre');
             $table->string('note');
     

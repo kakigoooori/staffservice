@@ -14,4 +14,5 @@ class ClientWorks extends Model
 return $this->belongsTo('App\Client');
 
     }
+    
 }

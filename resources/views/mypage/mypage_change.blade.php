@@ -4,20 +4,6 @@
   <li class="nav-item">
     <a class="nav-link" href=/mypage>マイページ</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href=/mypage/toukou>投稿一覧</a>
-  </li>
- 
-  <li class="nav-item">
-    <a class="nav-link" href=/mypage/receive>受信管理</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href=/mypage/send>送信管理</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href=/mypage/change>登録内容変更</a>
-  </li>
-  
 </ul>
 
 <h2>登録内容変更</h2>
@@ -30,7 +16,7 @@
 
 <a href="/mypage/edit/{{ Auth::id() }}">登録内容変更</a>
 
-<p>{{ Auth::user()->name }}さんの登録内容を変更する</P><br>
+<p>{{ Auth::user()->nickname }}さんの登録内容を変更する</P><br>
 
 </div>
 </div>
@@ -39,7 +25,7 @@
 <div class="col-sm-6">
 <div class="card" >
 <a href=/mypage/receive>メールアドレス変更</a>
-<p>{{ Auth::user()->name }}さんのメールアドレスの変更はこちらからです</P><br>
+<p>{{ Auth::user()->nickname }}さんのメールアドレスの変更はこちらからです</P><br>
 </div>
 </div>
 </div>
@@ -47,8 +33,8 @@
 <div class="row">
 <div class="col-sm-6">
 <div class="card" >
-<a href=/mypage/delete>退会処理</a>
-<p>{{ Auth::user()->name }}さんの退会処理をはこちらから行います</P><br>
+<a href=/mypage/delete>アカウント削除</a>
+<p>{{ Auth::user()->nickname }}さんのアカウントの削除をはこちらから行います</P><br>
       
 </div>
 </div>
@@ -56,7 +42,7 @@
 <div class="col-sm-6">
 <div class="card" >
 <a href=/mypage/changepassword>パスワード変更</a>
-<p>{{ Auth::user()->name }}さんのパスワードを変更します</P><br>
+<p>{{ Auth::user()->nickname }}さんのパスワードを変更します</P><br>
 </div>
 </div>
 

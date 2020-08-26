@@ -16,6 +16,8 @@ class CreateClientWorksTable extends Migration
         {
             Schema::create('clientWorks', function (Blueprint $table) {
                 $table->increments('id');
+                $table->integer('client_id');
+                $table->string('name');
                 $table->integer('price');
                 $table->string('start');
                 $table->string('end');

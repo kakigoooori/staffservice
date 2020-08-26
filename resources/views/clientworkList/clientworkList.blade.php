@@ -75,20 +75,15 @@
  
 <table class="container-fluid">
     <tr>
-    <th style="width:100px;">案件名</th>
+    <th style="width:300px;">案件名</th>
     <th style="width:100px;">月額報酬</th>
     <th style="width:100px;">開発開始</th>
     <th style="width:100px;">業界</th>
-
     <th style="width:100px;">都道府県</th>
-    <th style="width:100px;">以降住所</th>
-    <th style="width:100px;">リモート</th>
-    
     <th style="width:100px;">使用言語</th>
-    <th style="width:100px;">職務内容</th>
-    <th style="width:110px;">必須スキル</th>
-    <th style="width:110px;">歓迎スキル</th>
-    <th style="width:200px;">勤務地情報・備考</th>
+    <th style="width:100px;">詳細ページ</th>
+    <th style="width:100px;">編集</th>
+    <th style="width:100px;">削除</th>
         
     </tr>
     @foreach ($clientworkList as $menu)
@@ -97,16 +92,8 @@
         <td>{{ $menu->price}}</td>
         <td>{{ $menu->start }}</td>
         <td>{{ $menu->genre }}</td>
-      
         <td>{{ $menu->add02}}</td>
-        <td>{{ $menu->add03 }}</td>
-        <td>{{ $menu->remote}}</td>
-        
         <td>{{ $menu->tool }}</td>
-        <td>{{ $menu->jobcontent}}</td>
-        <td>{{ $menu->required_skill }}</td>
-        <td>{{ $menu->Welcome_skills}}</td>
-        <td>{{ $menu->note}}</td>
         
         <td><a href="/clientworkMore/{{ $menu->id }}" class="btn btn-success">確認</a></td>
         <td><a href="/clientwork_edit/{{ $menu->id }}" class="btn btn-info">編集</a></td>

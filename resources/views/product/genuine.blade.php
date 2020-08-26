@@ -5,6 +5,12 @@
    
 <form method="post" action="/genuine/done/{{$input['id'] }}" enctype="multipart/form-data">
 <br>
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
 <h2>スタッフ本登録(仮登録で未入力の項目に記入をしてください)</h2>
 <div class="container">
 <div class="row">

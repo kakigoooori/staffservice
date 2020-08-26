@@ -31,35 +31,6 @@ Route::get('/alert', 'BaseController@alert');
 //top
 Route::get('/mypage', 'BaseController@mypage');
 
-//投稿一覧
-Route::get('/mypage/toukou', 'BaseController@mypagetoukou');
-// matter
-Route::get('/mypage/toukou', 'BaseController@clientmatter');
-
-//投稿編集
-Route::get('/mypool_edit/{id}', 'BaseController@mypoolEdit');
-Route::post('/mypool_edit/{id}', 'BaseController@mypoolEditcheck');
-Route::post('/mypool_edit/done/{id}', 'BaseController@mypoolEditdone');
-
-
-//投稿削除
-Route::get('/mypool_delete/{id}', 'BaseController@mypoolDelete');
-Route::post('/mypool_delete/done/{id}', 'BaseController@mypoolDeletedone');
-
-
-
-//受信
-Route::get('/mypage/receive', 'BaseController@mypagereceive');
-
-Route::post('/mypage/receive/{id}', 'BaseController@receivereaction');
-
-
-//送信
-Route::get('/mypage/send', 'BaseController@mypagesend');
-
-Route::get('/mypage/send/{id}', 'BaseController@mypagesenddelete');
-
-
 
 
 //登録内容変更
@@ -171,14 +142,6 @@ Route::post('/agreement/done/{id}', 'BaseController@agreementdone');
 //memo
 Route::get('/memo/{id}', 'BaseController@getmemo');
 Route::post('/memo/done/{id}', 'BaseController@memodone');
-
-
-
-//商品購入確認画面
-Route::post('/product/check/{id}', 'BaseController@ProductCheck');
-
-//プロフィール画面の表示
-Route::get('/profile/{id}', 'BaseController@getProfile');
 
 
 

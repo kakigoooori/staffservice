@@ -213,11 +213,26 @@
 </th>
 <th>
 <div class="form-group">
-@empty($skilldata[0])      
-<input type="text" name="job" value="{{ old('job' )}}">
-@else
-<input type="text" name="job" value="{{ $skilldata[0]->job }}">
-@endempty
+
+<select name="job" >
+<option value="{{ $skilldata[0]->job }}" selected>{{ $skilldata[0]->job }}</option>
+<option value="情報・通信">情報・通信</option>
+<option value="動画サービス">動画サービス</option>
+<option value="ゲーム">ゲーム</option>
+<option value="教育">教育</option>
+<option value="医療・福祉">医療・福祉</option>
+<option value="銀行・証券・保険">銀行・証券・保険</option>
+<option value="不動産">不動産</option>
+<option value="EC・小売・流通">EC・小売・流通</option>
+<option value="SNS・コミュニティ">SNS・コミュニティ</option>
+<option value="交通・位置情報">交通・位置情報</option>
+<option value="旅行・宿泊・飲食">旅行・宿泊・飲食</option>
+<option value="広告">広告</option>
+<option value="メーカー">メーカー</option>
+<option value="その他">その他</option>
+</select>
+
+
 </div>
 </th>
 </tr>
@@ -278,9 +293,9 @@
 <th>
 <div class="form-group"> 
 @empty($skilldata[0])  
-<input type="text" name="startday" value="{{ old('startday' ) }}">
+<input type="date" name="startday" value="{{ old('startday' ) }}">
 @else
-<input type="text" name="startday" value="{{ $skilldata[0]->startday }}">
+<input type="date" name="startday" value="{{ $skilldata[0]->startday }}">
 @endempty
 </div>
 </th>
