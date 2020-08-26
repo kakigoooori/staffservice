@@ -109,7 +109,7 @@
         <td>{{ $menu->note}}</td>
         
         <td><a href="/clientworkMore/{{ $menu->id }}" class="btn btn-success">確認</a></td>
-        <td><a href="/clientwork_edit/{{ $menu->id }}" class="btn btn-info">編集</a></td>
+        <td><a href="/clientworksEdit/{{ $menu->id }}" class="btn btn-info">編集</a></td>
         <td><a href="/clientwork_delete/{{ $menu->id }}" class="btn btn-danger">削除</a></td>
         
     </tr>

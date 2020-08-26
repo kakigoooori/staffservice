@@ -7,9 +7,25 @@
 <div class="col-sm-8">
 <div class="card" >
 
+<tr>
+    <td>　掲載期間</td>
+    <td>
+    {{ $input['start'] }}
+    </td>
+  </tr>
+
+  <tr>
+    <td>～
+    </td>
+    <td>
+    {{ $input['end'] }}
+    </td>
+  </tr>
+
   <div class="card-header">
   <h2>{{ $input['name'] }}</h2>
   </div>
+
   <table class="table">
   <tr>
     <td>月額報酬</td>
@@ -21,14 +37,14 @@
   <tr>
     <td>開発開始</td>
     <td>
-    {{ $input['start'] }}
+    {{ $input['devstart'] }}
     </td>
   </tr>
 
   <tr>
     <td>開発終了</td>
     <td>
-    {{ $input['end'] }}
+    {{ $input['devend'] }}
     </td>
   </tr>
 
@@ -49,6 +65,14 @@
     </td>
   </tr>
   
+
+  <tr>
+    <td>最寄り駅</td>
+    <td>
+    {{ $input['station'] }}
+    </td>
+  </tr>
+
   <tr>
     <td>リモート開発</td>
     <td>

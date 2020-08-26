@@ -34,7 +34,7 @@ Route::get('/mypage', 'BaseController@mypage');
 //投稿一覧
 Route::get('/mypage/toukou', 'BaseController@mypagetoukou');
 // matter
-Route::get('/mypage/toukou', 'BaseController@clientmatter');
+Route::get('/client/clientMatter/{id}', 'BaseController@clientMatter');
 
 //投稿編集
 Route::get('/mypool_edit/{id}', 'BaseController@mypoolEdit');
@@ -122,6 +122,16 @@ Route::get('/clientworkList','BaseController@clientworkList')->name('clientWorkL
 // 案件詳細確認ｃｓｖ
 Route::get('/clientworkMore/{id}','BaseController@clientworkMore')->name('clientworkMorepage');
 Route::get('/csv/downloadworks/{id}','BaseController@downloadworks');
+
+
+//案件編集
+Route::get('/clientworksEdit/{id}', 'BaseController@clientworksEdit');
+Route::post('/clientworksEdit/{id}', 'BaseController@clientworksEditcheck');
+Route::post('/clientworksEdit/done/{id}', 'BaseController@clientworksEditdone');
+
+//案件削除
+Route::get('/clientwork_delete/{id}', 'BaseController@clientworkDelete');
+Route::post('/clientworkDeletedone/{id}', 'BaseController@clientworkDeletedone');
 
 //search画面へのアクセス
 Route::get('/search', 'BaseController@getSearch');
