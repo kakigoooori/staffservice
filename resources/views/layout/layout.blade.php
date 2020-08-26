@@ -97,7 +97,7 @@
 
                             <li><a class="btn btn-danger" href="{{ route('register') }}">新規管理者登録</a></li>
                             @else
-                            <li class="nav-item"><a class="nav-link" href="#">  {{ Auth::user()->nickname }}様</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">  {{ Auth::user()->name }}様</a></li>
                                 <li>
                                         <a class="btn btn-warning" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

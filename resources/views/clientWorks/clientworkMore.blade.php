@@ -394,6 +394,8 @@
 <table class="table table-hover">
     <tr>
     <th><p><input type="submit" value="検索する" formaction=/clientworkMore/{{$input['id'] }} class="btn btn-primary"></p></th>
+    <th><p><input type="submit" value="メール送信" formaction=/clientworkMore/{{$input['id'] }} class="btn btn-primary"></p></th>
+    <th><p><input type="submit" value="SMS送信" formaction=/clientworkMore/{{$input['id'] }} class="btn btn-primary"></p></th>
     </tr>
     </table>
 </form>
