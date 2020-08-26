@@ -46,7 +46,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="/pool">仮登録</a>
-        <a class="dropdown-item" href="/pool">本登録</a>
+        <a class="dropdown-item" href="/mainpool">本登録</a>
         </div>
     </li>
 

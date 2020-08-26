@@ -54,12 +54,15 @@ Route::get('/mypage/changepassword', 'EditController@showChangePasswordForm');
 Route::post('/mypage/changepassword', 'EditController@changePassword')->name('changepassword');
 
 
-//pool画面へのアクセス
+//仮登録l画面へのアクセス
 Route::get('/pool', 'BaseController@getPool');
 Route::post('/pool', 'BaseController@poolCheck');
 Route::post('/done', 'BaseController@poolDone');
 
-
+//本登録l画面へのアクセス
+Route::get('/mainpool', 'BaseController@getmainPool');
+Route::post('/mainpool', 'BaseController@mainpoolCheck');
+Route::post('/maindone', 'BaseController@mainpoolDone');
 
 //クライアント登録へのアクセス
 Route::get('/client', 'BaseController@client');

@@ -820,7 +820,7 @@ public function client()
             }
         }
 
-    //投稿画面
+    //仮登録画面
     public function getPool() 
     {
                 // ログインしていたら、mypageを表示
@@ -832,7 +832,6 @@ public function client()
         
                 }
     }
-
 
     
     public function poolCheck(PoolRequest $request) 
@@ -874,6 +873,146 @@ public function client()
       return redirect()->action('BaseController@mypagetoukou');
 
     }
+
+        //本登録画面
+        public function getmainPool() 
+        {
+                    // ログインしていたら、mypageを表示
+                    if (Auth::check()) {
+                        return view('pool/mainpool');
+                     } else {
+                    // ログインしていなかったら、Login画面を表示
+                        return view('alert/alert');
+            
+                    }
+        }
+
+        public function mainpoolCheck(PoolRequest $request) 
+        {
+            return view('pool/main_poolcomplete')->with('input', $request->all());
+        }
+
+        public function mainpoolDone(PoolRequest $request) 
+        {
+            $genuine_record = new Genuine;
+
+            $genuine_record->id = $request->id;
+            $genuine_record->entryday = $request->entryday;
+            $genuine_record->name = $request->name;
+            $genuine_record->phonetic = $request->phonetic;
+            $genuine_record->gender = $request->gender;
+            $genuine_record->consort = $request->consort;
+            $genuine_record->parent = $request->parent;
+            $genuine_record->year = $request->year;
+            $genuine_record->month = $request->month;
+            $genuine_record->day = $request->day;
+            $genuine_record->age = $request->age;
+            $genuine_record->zip01 = $request->zip01;
+            $genuine_record->pref01 = $request->pref01;
+            $genuine_record->addr01 = $request->addr01;
+            $genuine_record->line = $request->line;
+            $genuine_record->station = $request->station;
+            $genuine_record->tel = $request->tel;
+            $genuine_record->mobiletel = $request->mobiletel;
+            $genuine_record->email = $request->email;
+            $genuine_record->mobilemail = $request->mobilemail;
+            $genuine_record->emergencytel = $request->emergencytel;
+            $genuine_record->joincompany = $request->joincompany;
+            $genuine_record->save();
+    
+            $skill_recode = new Skill;
+            $skill_recode->genuine_id = $genuine_record->id;
+            $skill_recode->nickname = $request->nickname;
+            $skill_recode->performance1 = $request->performance1;
+            $skill_recode->performance2 = $request->performance2;
+            $skill_recode->performance3 = $request->performance3;
+            $skill_recode->performance4 = $request->performance4;
+            $skill_recode->performance5 = $request->performance5;
+            $skill_recode->rank = $request->rank;
+            $skill_recode->score = $request->score;
+            $skill_recode->pc = $request->pc;
+            $skill_recode->manners = $request->manners;
+            $skill_recode->sensible = $request->sensible;
+            $skill_recode->certification1 = $request->certification1;
+            $skill_recode->learn1 = $request->learn1;
+            $skill_recode->certification2 = $request->certification2;
+            $skill_recode->learn2 = $request->learn2;
+            $skill_recode->certification3 = $request->certification3;
+            $skill_recode->learn3 = $request->learn3;
+            $skill_recode->certification4 = $request->certification4;
+            $skill_recode->learn4 = $request->learn4;
+            $skill_recode->certification5 = $request->certification5;
+            $skill_recode->learn5 = $request->learn5;
+            $skill_recode->skill1 = $request->skill1;
+            $skill_recode->skill2 = $request->skill2;
+            $skill_recode->skill3 = $request->skill3;
+            $skill_recode->note = $request->note;
+            $skill_recode->save();
+    
+            $salary_recode = new Salary;
+            $salary_recode->genuine_id = $genuine_record->id;
+            $salary_recode->basic = $request->basic;
+            $salary_recode->allowance = $request->allowance;
+            $salary_recode->insurance = $request->insurance;
+            $salary_recode->mynumber = $request->mynumber;
+            $salary_recode->bankname = $request->bankname;
+            $salary_recode->storename = $request->storename;
+            $salary_recode->account_number = $request->account_number;
+            $salary_recode->account_name = $request->account_name;
+            $salary_recode->note = $request->note;
+            $salary_recode->save();
+    
+            
+            $family_recode = new Family;
+            $family_recode->genuine_id = $genuine_record->id;
+            $family_recode->consort = $request->consort;
+            $family_recode->parent = $request->parent;
+            $family_recode->children = $request->children;
+            $family_recode->children2 = $request->children2;
+            $family_recode->children3 = $request->children3;
+            $family_recode->note = $request->note;
+            $family_recode->save();
+    
+            
+            $hope_recode = new Hope;
+            $hope_recode->genuine_id = $genuine_record->id;
+            $hope_recode->job = $request->job;
+            $hope_recode->place = $request->place;
+            $hope_recode->industry = $request->industry;
+            $hope_recode->annual_income = $request->annual_income;
+            $hope_recode->startday = $request->startday;
+            $hope_recode->priority1 = $request->priority1;
+            $hope_recode->priority2 = $request->priority2;
+            $hope_recode->priority3 = $request->priority3;
+            $hope_recode->note = $request->note;
+            $hope_recode->save();
+    
+            
+            $salary_recode = new Agreement;
+            $salary_recode->genuine_id = $genuine_record->id;
+            $salary_recode->contract = $request->contract;
+            $salary_recode->place = $request->place;
+            $salary_recode->time = $request->time;
+            $salary_recode->break = $request->break;
+            $salary_recode->overtime = $request->overtime;
+            $salary_recode->holiday = $request->holiday;
+            $salary_recode->paid = $request->paid;
+            $salary_recode->other = $request->other;
+            $salary_recode->note = $request->note;
+            $salary_recode->save();
+    
+            $memo_recode = new Memo;
+            $memo_recode->genuine_id = $genuine_record->id;
+            $memo_recode->note = $request->note;
+            $memo_recode->save();
+        
+    
+            //戻る場所を指定しておく↓
+    
+           return redirect()->action('BaseController@getgenuine', ['id' => $genuine_record->id])->with('success', '更新が完了しました。');
+    
+    
+        }
 
 
 

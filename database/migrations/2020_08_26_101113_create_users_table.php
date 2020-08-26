@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('team');
             $table->string('post');
             $table->string('email');
-            $table->integer('tel');
+            $table->string('tel');
             $table->string('note');
             $table->string('image')->nullable();
             $table->string('remember_token')->nullable();

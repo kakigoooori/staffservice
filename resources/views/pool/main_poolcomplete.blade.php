@@ -1,7 +1,7 @@
 @extends('layout/layout')
  @section('content')
 <h1>内容確認</h1>
-<form method="post" action="/done" id="create_form" enctype="multipart/form-data">
+<form method="post" action="/maindone" id="create_form" enctype="multipart/form-data">
 
 {{ csrf_field() }}
 
@@ -11,14 +11,6 @@
     <td>
     {{ $input['entryday'] }}
     <input type="hidden" name="entryday" value="{{ $input['entryday'] }}">
-    </td>
-  </tr>
-
-  <tr>
-    <td>担当者</td>
-    <td>
-    {{ $input['nickname'] }}
-    <input type="hidden" name="nickname" value="{{ $input['nickname'] }}">
     </td>
   </tr>
 
@@ -53,6 +45,7 @@
     <input type="hidden" name="year" value="{{ $input['year'] }}">
     <input type="hidden" name="month" value="{{ $input['month'] }}">
     <input type="hidden" name="day" value="{{ $input['day'] }}">
+    <input type="hidden" name="age" value="{{ \Carbon\Carbon::createFromDate($input['year'],$input['month'],$input['day'])->age }}" size="1">
     &nbsp;{{ \Carbon\Carbon::createFromDate($input['year'],$input['month'],$input['day'])->age }}歳
     </td>
   </tr>
@@ -78,6 +71,22 @@
     <td>
     {{ $input['addr01'] }}
     <input type="hidden" name="addr01" value="{{ $input['addr01'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>沿線名</td>
+    <td>
+    {{ $input['line'] }}
+    <input type="hidden" name="line" value="{{ $input['line'] }}">
+    </td>
+  </tr>
+
+  <tr>
+    <td>駅名</td>
+    <td>
+    {{ $input['station'] }}
+    <input type="hidden" name="station" value="{{ $input['station'] }}">
     </td>
   </tr>
 
@@ -116,63 +125,36 @@
   <tr>
     <td>募集媒体</td>
     <td>
-    {{ $input['job'] }}
-    <input type="hidden" name="job" value="{{ $input['job'] }}">
+    {{ $input['emergencytel'] }}
+    <input type="hidden" name="emergencytel" value="{{ $input['emergencytel'] }}">
     </td>
   </tr>
 
   <tr>
-    <td>面接区分</td>
+    <td>入社日</td>
     <td>
-    {{ $input['judge'] }}
-    <input type="hidden" name="judge" value="{{ $input['judge'] }}">
+    {{ $input['joincompany'] }}
+    <input type="hidden" name="joincompany" value="{{ $input['joincompany'] }}">
     </td>
   </tr>
 
   <tr>
-    <td>面接日</td>
+    <td>担当者</td>
     <td>
-    {{ $input['interviewday'] }}
-    <input type="hidden" name="interviewday" value="{{ $input['interviewday'] }}">
+    {{ Auth::user()->name }}
+    <input type="hidden" name="nickname" value="{{ Auth::user()->name }}">
     </td>
   </tr>
-
-  <tr>
-    <td>面接時間</td>
-    <td>
-    {{ $input['start_time'] }}～{{ $input['end_time'] }}
-    <input type="hidden" name="start_time" value="{{ $input['start_time'] }}">
-    <input type="hidden" name="end_time" value="{{ $input['end_time'] }}">
-    </td>
-  </tr>
-
-  <tr>
-    <td>面接場所</td>
-    <td>
-    {{ $input['place'] }}
-    <input type="hidden" name="place" value="{{ $input['place'] }}">
-    </td>
-  </tr>
- 
-  <tr>
-    <td>備考</td>
-    <td>
-    {!! nl2br(e( $input['note'] ))!!}
-    <input type="hidden" name="note" value="{{ $input['note'] }}">
-    </td>
-  </tr>
-  
- 
 
 
 </table>
-<p>以上の内容で投稿します。</p>
+<p>上記の内容で基本情報を登録します。</p>
 <br>
 </form>
 
 <div class="row">
   <div class="col-sm-12">
-    <a href="/pool" class="btn btn-primary" value="">
+    <a href="/mainpool" class="btn btn-primary" value="">
       フォームに戻る
     </a>
 <br>
