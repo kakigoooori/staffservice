@@ -65,8 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-
+        $user = User::create([
             'area' => $data['area'],
             'number' => $data['number'],
             'password' => bcrypt($data['password']),
@@ -78,8 +77,37 @@ class RegisterController extends Controller
             'tel' => $data['tel'],
             'note' => $data['note'],
             'image' => $data['image'],
-        
         ]);
+
+        $id = $user->id;
+        $give_role = $this->giveRole($id);
+
+        return $user;
+    }
+
+    //role付与
+    public function giveRole($id)
+    {
+        $user = User::find($id);
+        $role = $user->authority;
+
+        switch($role){
+            case "マネージャー":
+                $user->assignRole('マネージャー');
+                break;
+            case "サブマネージャー":
+                $user->assignRole('サブマネージャー');
+                break;
+            case "コーディネーター":
+                $user->assignRole('コーディネーター');
+                break;
+            case "アシスタント":
+                $user->assignRole('アシスタント');
+                break;
+            case "スタッフ":
+                $user->assignRole('スタッフ');
+                break;
+        }
     }
 
    

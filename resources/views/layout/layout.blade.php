@@ -88,6 +88,20 @@
           
         </div>
       </li>
+
+      @can('master')
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          権限管理
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
+          <a class="dropdown-item" href="">テスト</a>
+          <a class="dropdown-item" href="">テスト</a>
+          
+        </div>
+      </li>
+      @endcan
       </ul>
                    <ul class="nav navbar-nav navbar-right">
                         <!-- ログイン -->
