@@ -53,6 +53,11 @@ Route::get('/delete', 'BaseController@delete');
 Route::get('/mypage/changepassword', 'EditController@showChangePasswordForm');
 Route::post('/mypage/changepassword', 'EditController@changePassword')->name('changepassword');
 
+//権限変更
+Route::get('/mypage/authority', 'PermissionController@config');
+Route::get('/mypage/authority/edit/{id}', 'PermissionController@editAuthority');
+Route::post('/mypage/authority/edit/done', 'PermissionController@editAuthorityDone');
+
 
 //pool画面へのアクセス
 Route::get('/pool', 'BaseController@getPool');

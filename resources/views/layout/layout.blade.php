@@ -96,8 +96,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="">テスト</a>
-          <a class="dropdown-item" href="">テスト</a>
+          <a class="dropdown-item" href="/mypage/authority">権限設定</a>
           
         </div>
       </li>

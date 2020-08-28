@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
@@ -79,37 +80,13 @@ class RegisterController extends Controller
             'image' => $data['image'],
         ]);
 
+        //role付与
+        $permission = new PermissionController;
         $id = $user->id;
-        $give_role = $this->giveRole($id);
+        $give_role = $permission->giveRole($id);
 
         return $user;
     }
-
-    //role付与
-    public function giveRole($id)
-    {
-        $user = User::find($id);
-        $role = $user->authority;
-
-        switch($role){
-            case "マネージャー":
-                $user->assignRole('マネージャー');
-                break;
-            case "サブマネージャー":
-                $user->assignRole('サブマネージャー');
-                break;
-            case "コーディネーター":
-                $user->assignRole('コーディネーター');
-                break;
-            case "アシスタント":
-                $user->assignRole('アシスタント');
-                break;
-            case "スタッフ":
-                $user->assignRole('スタッフ');
-                break;
-        }
-    }
-
    
  }
 
