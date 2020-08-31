@@ -257,6 +257,7 @@
 <tr>
     <th>
     <input type="text" name="nickname" value="{{$nickname}}" >
+    </th>
     <th>
     <input type="text" name="certification1" value="{{$certification1 }}">
     </th>

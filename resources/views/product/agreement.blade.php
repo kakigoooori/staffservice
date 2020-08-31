@@ -214,7 +214,7 @@
 <th>
 <div class="form-group">
 @empty($skilldata[0])      
-<input type="text" name="contract" value="{{ old('contract' )}}">
+<input type="text" name="contract" value="{{ old('contract')}}">
 @else
 <input type="text" name="contract" value="{{ $skilldata[0]->contract }}">
 @endempty

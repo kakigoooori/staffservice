@@ -14,10 +14,6 @@ Route::get('/info', function (){
     phpinfo();
     });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 //top画面へのアクセス
 Route::get('/top', 'BaseController@getTop');
 
@@ -25,9 +21,18 @@ Route::get('/top', 'BaseController@getTop');
 Route::get('/alert', 'BaseController@alert');
 
 
+// 書類一覧
+// 労働者派遣契約書
+Route::get('/documents/hakenn', 'BaseController@hakenn');
+Route::post('/documents/hakennCheck', 'BaseController@hakennCheck');
 
+// 労働者派遣通知書
+Route::get('/documents/tuuti', 'BaseController@tuuti');
+Route::post('/documents/tuutiCheck', 'BaseController@tuutiCheck');
 
-
+// 労働条件通知書
+Route::get('/documents/jyoukenn', 'BaseController@jyoukenn');
+Route::post('/documents/jyoukennCheck', 'BaseController@jyoukennCheck');
 //top
 Route::get('/mypage', 'BaseController@mypage');
 
@@ -181,14 +186,6 @@ Route::post('/agreement/done/{id}', 'BaseController@agreementdone');
 //memo
 Route::get('/memo/{id}', 'BaseController@getmemo');
 Route::post('/memo/done/{id}', 'BaseController@memodone');
-
-
-
-//商品購入確認画面
-Route::post('/product/check/{id}', 'BaseController@ProductCheck');
-
-//プロフィール画面の表示
-Route::get('/profile/{id}', 'BaseController@getProfile');
 
 
 

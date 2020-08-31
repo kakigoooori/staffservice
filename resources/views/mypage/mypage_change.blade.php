@@ -4,20 +4,6 @@
   <li class="nav-item">
     <a class="nav-link" href=/mypage>マイページ</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href=/mypage/toukou>投稿一覧</a>
-  </li>
- 
-  <li class="nav-item">
-    <a class="nav-link" href=/mypage/receive>受信管理</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href=/mypage/send>送信管理</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href=/mypage/change>登録内容変更</a>
-  </li>
-  
 </ul>
 
 <h2>登録内容変更</h2>
@@ -47,8 +33,8 @@
 <div class="row">
 <div class="col-sm-6">
 <div class="card" >
-<a href=/mypage/delete>退会処理</a>
-<p>{{ Auth::user()->name }}さんの退会処理をはこちらから行います</P><br>
+<a href=/mypage/delete>アカウント削除</a>
+<p>{{ Auth::user()->name }}さんのアカウントの削除をはこちらから行います</P><br>
       
 </div>
 </div>

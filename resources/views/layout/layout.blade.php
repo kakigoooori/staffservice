@@ -40,13 +40,25 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
      
-      <li class="nav-item">
-        <a class="nav-link" href="/pool">スタッフ登録</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/search">スタッフ仮登録一覧</a>
-      </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          スタッフ登録
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/pool">仮登録</a>
+        <a class="dropdown-item" href="/pool">本登録</a>
+        </div>
+    </li>
 
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          スタッフ検索
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item"  href="/search">仮登録一覧</a>
+        <a class="dropdown-item" href="/mainsearch">本登録一覧</a>
+        </div>
+    </li>
 
 
       <li class="nav-item dropdown">
@@ -65,31 +77,15 @@
       </li>
 
 
-
-
-     
-
-
-
-
-
-
-
-
-
-
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          マイページ
+          契約書類一覧
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="/mypage/toukou">投稿一覧</a>
-         
-          <a class="dropdown-item" href="/mypage/receive">受信管理</a>
-          <a class="dropdown-item" href="/mypage/send">送信管理</a>
-          <a class="dropdown-item" href="/mypage/change">管理者情報変更</a>
-          
+          <a class="dropdown-item" href="/documents/hakenn">労働者派遣契約書</a>
+          <a class="dropdown-item" href="/documents/tuuti">労働者派遣通知書</a>
+          <a class="dropdown-item" href="/documents/jyoukenn">労働条件通知書</a>
         </div>
       </li>
       </ul>

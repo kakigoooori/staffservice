@@ -74,8 +74,6 @@ class RegisterController extends Controller
             'authority' => $data['authority'],
             'team' => $data['team'],
             'post' => $data['post'],
-
-            
             'email' => $data['email'],
             'tel' => $data['tel'],
             'note' => $data['note'],

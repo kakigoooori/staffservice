@@ -31,6 +31,51 @@ use App\client;
 
 class BaseController extends Controller
 {
+
+// 労働者派遣通知書
+public function jyoukenn() {
+    return view('documents/jyoukenn');
+  }
+
+
+  public function jyoukennCheck(Request $request) 
+  {
+      
+       
+      return view('documents/jyoukennCheck')->with('input', $request->all());
+      
+  }
+
+// 労働者派遣通知書
+    public function tuuti() {
+        return view('documents/tuuti');
+      }
+    
+  
+      public function tuutiCheck(Request $request) 
+      {
+          
+           
+          return view('documents/tuutiCheck')->with('input', $request->all());
+          
+      }
+
+
+
+// 労働者派遣契約書
+    public function hakenn() {
+        return view('documents/hakenn');
+      }
+    
+  
+      public function hakennCheck(Request $request) 
+      {
+          
+           
+          return view('documents/hakennCheck')->with('input', $request->all());
+          
+      }
+
 // csv
     private function csvworkcolmns()
     {
@@ -120,21 +165,72 @@ class BaseController extends Controller
     }
     
 
-    public function clientworkMore($id)
+    public function clientworkMore(Request $request,$id)
     {
 
          // ログインしていたら、mypageを表示
          if (Auth::check()) {
         
-          $clientworkmore_data = clientworks::find($id)->user;
-          
+          $clientworkmore = clientworks::find($id)->client;
+
+          $gender = $request->input('gender');
+          $age = $request->input('age');
+          $age2 = $request->input('age2');
+          $certification1 = $request->input('certification1');
+          $pref01 = $request->input('pref01');
+          $addr01 = $request->input('addr01');
+          $station = $request->input('station');
+          $job = $request->input('job');
+
       
+          $query =Genuine::query();
+
+          $query->Join('skill','genuine.id','=','skill.genuine_id')
+                ->Join('hope','genuine.id','=','hope.genuine_id')->select('genuine.*');
+
+   
+          if (!empty($gender)) {
+              $query->where('gender', 'LIKE', "%{$gender}%");
+          }
+  
+          if (!empty($age)) {
+              $query->where('age', '>=', $age);
+          }
+
+          elseif (!empty($age2)) {
+              $query->where('age', '<=', $age2);
+          }
+
+          if (!empty($certification1)) {
+              $query->where('certification1', 'LIKE', "%{$certification1 }%");
+          }
+
+          if (!empty($pref01)) {
+              $query->where('pref01', 'LIKE', "%{$pref01}%");
+          }
+
+          if (!empty($addr01)) {
+              $query->where('addr01', 'LIKE', "%{$addr01}%");
+          }
+
+          if (!empty($station)) {
+              $query->where('station', 'LIKE', "%{$station}%");
+          }
+
+          if (!empty($job)) {
+            $query->where('job', 'LIKE', "%{$job}%");
+        }
+   
+   
+          $search = $query->get();
+
+ 
             $clientworkmore_data = clientworks::find($id);
             if (is_null($clientworkmore_data)) {
               return redirect()->action('BaseController@clientworkList');
             }
 
-            return view('clientWorks/clientworkMore',compact('clientworkmore_data',))->with(
+            return view('clientWorks/clientworkMore',compact('clientworkmore','search','gender','age','age2','certification1','pref01','addr01','station','job'))->with(
               'input', [
                 'start' => $clientworkmore_data->start,
                 'end' => $clientworkmore_data->end,
@@ -476,18 +572,13 @@ public function downloadclient($id)
     public function clientMore($id)
     {
 
-         // ログインしていたら、mypageを表示
-         if (Auth::check()) {
-        
-          $clientdata = client::find($id)->user;
-          
-      
+
             $client_data = client::find($id);
             if (is_null($client_data)) {
               return redirect()->action('BaseController@clientList');
             }
 
-            return view('client/clientMore',compact('clientdata',))->with(
+            return view('client/clientMore')->with(
               'input', [
                 'name' => $client_data->name,
                 'name_kana' => $client_data->name_kana,
@@ -506,15 +597,10 @@ public function downloadclient($id)
                 'id' => $id,
               ]);
 
-            } else {
-                // ログインしていなかったら、alert画面を表示
-                    return view('alert/alert');
-        
+         
                 }
-          // ログインしていたら、mypageを表示
         
-
-            }
+            
 
 // クライアントの掲載中案件
             public function clientMatter(Request $request,$id)
@@ -755,253 +841,41 @@ public function client()
 
         }
     }
-
-    //mypage toukou 画面へのログイン
-    public function mypagetoukou(Request $request)
-    {
-        
-        // ログインしていたら、mypageを表示
-        if (Auth::check()) {
-
-            $user_id = $request->input('user_id');
-
-            $query = Pool::query();
-
-            //user_idとIDが一致したとき表示する。
-            
-            if (empty($user_id)) {
-                $query->where('user_id', '=', (Auth::id()));
-            }
-
-            $search = $query->get();
-
-            return view('mypage/mypage_toukou',compact('search','user_id'));
-         } else {
-        // ログインしていなかったら、alert画面を表示
-            return view('alert/alert');
-
-        }
-    }
-
-
-     //mypool edit 画面へのログイン
-     public function mypoolEdit($id)
-     {
-         
-             $mypool_data = Pool::find($id);
-             if (is_null($mypool_data)) {
-               return redirect()->action('BaseController@mypagetoukou');
-             }
-         
- 
- 
-             return view('mypage/edit/mypool')->with(
-               'input', [
-               'work' => $mypool_data->work,
-                'price' => $mypool_data->price,
-                'genre' => $mypool_data->genre,
-                'start' => $mypool_data->start,
-                'end' => $mypool_data->end,
-                'worknote' => $mypool_data->worknote,
-                'user_id' => $mypool_data->user_id,
-                'id' => $id
-               ]);
-     }
- 
- 
- 
-     public function mypoolEditcheck(PoolRequest $request, $id)
-     {
-       $input = $request->all() + ['id' => $id];
-       return view('mypage/edit/mypool_check')->with('input', $input);
-     }
- 
-     public function mypoolEditdone(PoolRequest $request, $id)
-     {
-      
-        $mypool_record = Pool::find($id);
-       $mypool_record->work = $request->work;
-       $mypool_record->price = $request->price;
-       $mypool_record->genre  = $request->genre ;
-       $mypool_record->start = $request->start;
-       $mypool_record->end = $request->end;
-       $mypool_record->worknote = $request->worknote;
-       $mypool_record->user_id = $request->user_id;
-       $mypool_record->save();
-       
-       //戻る場所を指定しておく↓
-
-     return redirect()->action('BaseController@mypagetoukou');
-
-   
-    }
- 
     
-    //mypool delete 画面へのログイン
- 
-    public function mypoolDelete($id)
-    {
-      
-        $disp_data = Pool::find($id);
-        return view('mypage/delete/mypool_delete')->with('data', $disp_data);
-     
-    }
- 
- 
-    public function mypoolDeletedone($id)
-   {
-      
-       $delete_user = Pool::find($id);
-       $delete_user->delete();
-       return redirect()->action('BaseController@mypagetoukou');
-    
-   }
-
-
-        //mypage receive画面へのログイン
-        public function mypagereceive()
-        {
-            
-            // ログインしていたら、mypageを表示
-            if (Auth::check()) {
+          //mypage change画面へのログイン
+          public function mypagechange()
+          {
+          
+             // ログインしていたら、mypageを表示
+              if (Auth::check()) {
+              $db_result = Auth::user();
+              return view('mypage/mypage_change')->with('edit', $db_result);
                 
-                $query = Buy::select('id')->where('user_id',(Auth::id()))->get();
-
-                $userreceives = Buy::find($query);
-    
-                $userreceive = [];
-                foreach ($userreceives  as $v) {
-                    $userreceive[] = $v->userreceive[0];
-                }
-    
-                $pooldatas = Buy::find($query);
-                // dd($pooldatas);
-                $pooldata = [];
-                foreach ($pooldatas as $v) {
-                    $pooldata[] = $v->poolsent[0];
-                }
-    
-                $buyids =Buy::find($query);
-    
-                $buyid = [];
-                foreach($buyids as $v){
-                    $buyid[] =$v;
-                }
-
-                return view('mypage/mypage_receive',compact('userreceive','pooldata','buyid'));
-             } else {
+              } else {
             // ログインしていなかったら、alert画面を表示
                 return view('alert/alert');
-    
-            }
-        }
-
-            //receive reaction 
-    public function receivereaction(Request $request,$id)
-    {
-       
-        $reaction = Buy::find($id);
-        $reaction->reaction = $request->reaction;
-        $reaction->save();
-
-        $poolmail = Buy::find($id)->poolsent[0];
-        $pooluser = Buy::find($id)->usersent[0];
-        $usermail = Buy::find($id)->userreceive[0];
-        Mail::to($usermail)->send(new Complete($usermail,$poolmail,$pooluser,$reaction));
-
-        return redirect()->action('BaseController@mypagereceive');
      
-    }
-
-
-        //mypage send画面へのログイン
-    public function mypagesend()
-    {
-        
-        // ログインしていたら、mypageを表示
-        if (Auth::check()) {
-
-            
-            $query = Buy::select('id')->where('login_id',(Auth::id()))->get();
-
-            $userdatas = Buy::find($query);
-
-            $userdata = [];
-            foreach ($userdatas  as $v) {
-                $userdata[] = $v->usersent[0];
-            }
-
-            $pooldatas = Buy::find($query);
-            // dd($pooldatas);
-            $pooldata = [];
-            foreach ($pooldatas as $v) {
-                $pooldata[] = $v->poolsent[0];
-            }
-
-            $buyids =Buy::find($query);
-
-            $buyid = [];
-            foreach($buyids as $v){
-                $buyid[] =$v;
-            }
-
-
-            return view('mypage/mypage_send',compact('userdata','pooldata','buyid'));
-
-         } else {
-        // ログインしていなかったら、alert画面を表示
-            return view('alert/alert');
-
-        }
-    }
-
-    //sent 削除
-    public function mypagesenddelete($id)
-    {
-       
-        $delete_sent = Buy::find($id);
-        $delete_sent->delete();
-        return redirect()->action('BaseController@mypagesend');
+              }
+          }
      
-    }
-
-            //mypage change画面へのログイン
-     public function mypagechange()
-     {
+             //mypage delete
      
-        // ログインしていたら、mypageを表示
-         if (Auth::check()) {
-         $db_result = Auth::user();
-         return view('mypage/mypage_change')->with('edit', $db_result);
-           
-         } else {
-       // ログインしていなかったら、alert画面を表示
-           return view('alert/alert');
-
-         }
-     }
-
-        //mypage delete
-
-         public function mypagedelete() {
-
-            return view("mypage/delete");
-        }
-
-        public function delete() {
-
-            $user = Auth::user();
-
-            Auth::logout(); // ログアウト、update処理が行われる。
-
-            $user->delete(); // ユーザが削除される。
-
-            return view("mypage/delete_done");
-        }
-
-
-    
-
+              public function mypagedelete() {
+     
+                 return view("mypage/delete");
+             }
+     
+             public function delete() {
+     
+                 $user = Auth::user();
+     
+                 Auth::logout(); // ログアウト、update処理が行われる。
+     
+                 $user->delete(); // ユーザが削除される。
+     
+                 return view("mypage/delete_done");
+             }
+     
         //mypage profile画面へのログイン
         public function mypageprofile()
         {
@@ -1736,7 +1610,7 @@ public function staffdownload(Request $request)
                 return back()->with('success', '基本情報を記入し更新を押してください。');
             }
 
-            return view('Product/family',compact('skilldata',))->with(
+            return view('Product/family',compact('skilldata'))->with(
               'input', [
                 'entryday' => $genuine_data->entryday,
                 'name' => $genuine_data->name,
@@ -1975,7 +1849,7 @@ public function staffdownload(Request $request)
                $agreement_recode =Agreement::find($v->id);
            }
    
-   
+           $agreement_recode->contract = $request->contract;
            $agreement_recode->place = $request->place;
            $agreement_recode->time = $request->time;
            $agreement_recode->break = $request->break;
@@ -2132,68 +2006,6 @@ public function staffdownload(Request $request)
 
 
      //プロフィールページ
-
-     public function getProfile($id)
-     {  
-
-        $users = Auth::user();
-
-        $pooldata  = User::find($id)->poolprofile;
-
-        $Profile_data = User::find($id);
-    
-        return view('profile/profile',compact('pooldata','users'))->with(
-            'input', [
-              'nickname' => $Profile_data->nickname,
-              'area' => $Profile_data->area,
-              'gender' => $Profile_data->gender,
-              'note' => $Profile_data->note,
-              'id' => $id,
-              'image' =>$Profile_data->image
-            ]);
-         
-     }
-
-  
-
-               //mypage _chat 画面へのログイン
-    public function mypagechat($id)
-    {
-        
-        // ログインしていたら、表示
-        if (Auth::check()) {
-
-            $chatuser = User::find($id);
-
-            $comments = Comment::get();
-            return view('mypage/mypage_chat',compact('comments'))->with(
-                'input', [
-                  'nickname' => $chatuser->nickname,
-                  'id' => $id,
-                  ]);
-
-         } else {
-        // ログインしていなかったら、alert画面を表示
-            return view('alert/alert');
-
-        }
-    }
-
-    public function add(Request $request)
-    {
-        $user = Auth::user();
-        
-
-        $comment = $request->input('comment');
-        $bord_id = $request->input('bord_id');
-        Comment::create([
-            'login_id' => $user->id,
-            'name' => $user->nickname,
-            'comment' => $comment,
-            'bord_id' =>  $bord_id
-        ]);
-        return back();
-    }
 
 
  

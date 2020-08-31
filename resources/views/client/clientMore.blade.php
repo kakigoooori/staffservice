@@ -4,7 +4,7 @@
 {{ csrf_field() }}
 <div class="container">
 <div class="row">
-<div class="col-sm-8">
+<div class="col-sm-12">
 <div class="card" >
 
   <div class="card-header">
@@ -90,6 +90,7 @@
 
 {{ csrf_field() }}
 
+<<<<<<< HEAD
 
 <br>
 <td><a href="/client/clientMatter/{{$input['id'] }}" class="btn btn-success">このクライアントの案件</a></td>
@@ -103,5 +104,11 @@
 </table>
 
 
+=======
+</div>
+</div>
+</div>
+</div>
+>>>>>>> 98430cad716dacbacd73d94c3413bbe7701387d8
 
  @stop
