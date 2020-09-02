@@ -79,13 +79,13 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          マイページ
+          契約書類一覧
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           
-          <a class="dropdown-item" href="/mypage/toukou">投稿一覧</a>
-          <a class="dropdown-item" href="/mypage/change">管理者情報変更</a>
-          
+          <a class="dropdown-item" href="/documents/hakenn">労働者派遣契約書</a>
+          <a class="dropdown-item" href="/documents/tuuti">労働者派遣通知書</a>
+          <a class="dropdown-item" href="/documents/jyoukenn">労働条件通知書</a>
         </div>
       </li>
 
@@ -106,7 +106,7 @@
                         <!-- ログイン -->
                         @if (Auth::guest())
                        
-                            <li><a class="btn btn-danger " href="{{ route('login') }}">ログイン</a></li>
+                            <li><a class="btn btn-danger " href="{{ route('login') }}">ログイン</a></li>　
 
                             <li><a class="btn btn-danger" href="{{ route('register') }}">新規管理者登録</a></li>
                             @else

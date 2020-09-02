@@ -41,6 +41,7 @@
     </td>
   </tr>
   
+  
   <tr>
     <td>電話番号</td>
     <td>
@@ -89,9 +90,25 @@
 
 {{ csrf_field() }}
 
+<<<<<<< HEAD
+
+<br>
+<td><a href="/client/clientMatter/{{$input['id'] }}" class="btn btn-success">このクライアントの案件</a></td>
+
+
+
+
+</td>
+
+</tr>
+</table>
+
+
+=======
 </div>
 </div>
 </div>
 </div>
+>>>>>>> 98430cad716dacbacd73d94c3413bbe7701387d8
 
  @stop

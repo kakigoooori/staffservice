@@ -14,7 +14,6 @@ use App\Agreement;
 use App\Memo;
 use App\Comment;
 use App\Buy;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact;
@@ -32,6 +31,51 @@ use App\client;
 
 class BaseController extends Controller
 {
+
+// 労働者派遣通知書
+public function jyoukenn() {
+    return view('documents/jyoukenn');
+  }
+
+
+  public function jyoukennCheck(Request $request) 
+  {
+      
+       
+      return view('documents/jyoukennCheck')->with('input', $request->all());
+      
+  }
+
+// 労働者派遣通知書
+    public function tuuti() {
+        return view('documents/tuuti');
+      }
+    
+  
+      public function tuutiCheck(Request $request) 
+      {
+          
+           
+          return view('documents/tuutiCheck')->with('input', $request->all());
+          
+      }
+
+
+
+// 労働者派遣契約書
+    public function hakenn() {
+        return view('documents/hakenn');
+      }
+    
+  
+      public function hakennCheck(Request $request) 
+      {
+          
+           
+          return view('documents/hakennCheck')->with('input', $request->all());
+          
+      }
+
 // csv
     private function csvworkcolmns()
     {
@@ -188,14 +232,17 @@ class BaseController extends Controller
 
             return view('clientWorks/clientworkMore',compact('clientworkmore','search','gender','age','age2','certification1','pref01','addr01','station','job'))->with(
               'input', [
-                'name' => $clientworkmore_data->name,
-                'price' => $clientworkmore_data->price,
                 'start' => $clientworkmore_data->start,
                 'end' => $clientworkmore_data->end,
+                'name' => $clientworkmore_data->name,
+                'price' => $clientworkmore_data->price,
+                'devstart' => $clientworkmore_data->devstart,
+                'devend' => $clientworkmore_data->devend,
                 'genre' => $clientworkmore_data->genre,
                 'add01' => $clientworkmore_data->add01,
                 'add02' => $clientworkmore_data->add02,
                 'add03' => $clientworkmore_data->add03,
+                'station' => $clientworkmore_data->station,
                 'remote' => $clientworkmore_data->remote,
                 'tool' => $clientworkmore_data->tool,
                 'jobcontent' => $clientworkmore_data->jobcontent,
@@ -213,95 +260,109 @@ class BaseController extends Controller
         
     }
 
-    //client edit 画面へのログイン
-    public function clientworkEdit($id)
+    //案件編集 
+    public function clientworksEdit($id)
     {
         
-            $clientEdit_data = client::find($id);
-            if (is_null($clientEdit_data)) {
-              return redirect()->action('BaseController@clientList');
+            $clientworksEdit_data = clientworks::find($id);
+            if (is_null($clientworksEdit_data)) {
+              return redirect()->action('BaseController@clientworkList');
             }
         
 
 
-            return view('client/clientEdit')->with(
+            return view('clientWorks/clientworksEdit')->with(
               'input', [
-              'name' => $clientEdit_data->name,
-               'name_kana' => $clientEdit_data->name_kana,
-               'email' => $clientEdit_data->email,
-               'office_name' => $clientEdit_data->office_name,
-               'add01' => $clientEdit_data->add01,
-               'add02' => $clientEdit_data->add02,
-               'add03' => $clientEdit_data->add03,
-               'tel' => $clientEdit_data->tel,
-               'url' => $clientEdit_data->url,
-               'date' => $clientEdit_data->date,
-               'genre' => $clientEdit_data->genre,
-               'note' => $clientEdit_data->note,
+                'start' => $clientworksEdit_data->start,
+                'end' => $clientworksEdit_data->end,
+              'name' => $clientworksEdit_data->name,
+               'price' => $clientworksEdit_data->price,
+               'devstart' => $clientworksEdit_data->devstart,
+               'devend' => $clientworksEdit_data->denvend,
+               'genre' => $clientworksEdit_data->genre,
+               'add01' => $clientworksEdit_data->add01,
+               'add02' => $clientworksEdit_data->add02,
+               'add03' => $clientworksEdit_data->add03,
+
+               'station' => $clientworksEdit_data->station,
+               'remote' => $clientworksEdit_data->remote,
+               'tool' => $clientworksEdit_data->tool,
+               'jobcontent' => $clientworksEdit_data->jobcontent,
+               'required_skill' => $clientworksEdit_data->required_skill,
+              
+               'Welcome_skills' => $clientworksEdit_data->Welcome_skills,
+               'note' => $clientworksEdit_data->note,
                'id' => $id
-               
+
               ]);
     }
 
 
 
-    public function clientworkEditcheck(clientRequest $request, $id)
+    public function clientworksEditcheck(clientRequest $request, $id)
     {
       $input = $request->all() + ['id' => $id];
-      return view('client/clientEditcheck')->with('input', $input);
+      return view('clientWorks/clientworksEditcheck')->with('input', $input);
     }
 
-    public function clientworkEditdone(clientRequest $request, $id)
+    public function clientworksEditdone(clientRequest $request, $id)
     {
      
-       $clientEdit_record = client::find($id);
-      $clientEdit_record->name = $request->name;
-      $clientEdit_record->name_kana = $request->name_kana;
-      $clientEdit_record->email  = $request->email ;
-      $clientEdit_record->office_name = $request->office_name;
-      $clientEdit_record->add01 = $request->add01;
-      $clientEdit_record->add02 = $request->add02;
-      $clientEdit_record->add03 = $request->add03;
-      $clientEdit_record->tel = $request->tel;
-      $clientEdit_record->url = $request->url;
-      $clientEdit_record->date = $request->date;
-      $clientEdit_record->genre = $request->genre;
-      $clientEdit_record->note = $request->note;
+       $clientworksEdit_record = clientworks::find($id);
+       $clientworksEdit_record->start = $request->start;
+      $clientworksEdit_record->end = $request->end;
+      $clientworksEdit_record->name = $request->name;
+      $clientworksEdit_record->price = $request->price;
+      $clientworksEdit_record->devstart  = $request->devstart ;
+      $clientworksEdit_record->devend = $request->devend;
+      $clientworksEdit_record->genre = $request->genre;
+      $clientworksEdit_record->add01 = $request->add01;
+      $clientworksEdit_record->add02 = $request->add02;
+      $clientworksEdit_record->add03 = $request->add03;
+      
+      $clientworksEdit_record->station = $request->station;
+      $clientworksEdit_record->remote = $request->remote;
+      $clientworksEdit_record->tool = $request->tool;
      
+      
+      $clientworksEdit_record->jobcontent = $request->jobcontent;
+      $clientworksEdit_record->required_skill = $request->required_skill;
+      $clientworksEdit_record->Welcome_skills = $request->Welcome_skills;
+      $clientworksEdit_record->note = $request->note;
 
 
-      $clientEdit_record->save();
+      $clientworksEdit_record->save();
       
       //戻る場所を指定しておく↓
 
-    return redirect()->action('BaseController@clientList');
+    return redirect()->action('BaseController@clientworkList');
 
   
    }
 
    
-   //mypool delete 画面へのログイン
+//    案件削除
 
    public function clientworkDelete($id)
    {
      
-       $disp_data = client::find($id);
-       return view('client/client_delete')->with('data', $disp_data);
+       $disp_data = clientworks::find($id);
+       return view('clientworks/clientwork_delete')->with('data', $disp_data);
     
    }
 
 
-   public function clientDeleteworkdone($id)
+   public function clientworkDeletedone($id)
   {
      
-      $delete_client = client::find($id);
-      $delete_client->delete();
-      return redirect()->action('BaseController@clientList');
+      $delete_clientwork = clientworks::find($id);
+      $delete_clientwork->delete();
+      return redirect()->action('BaseController@clientworkList');
    
   }
 
 
-
+// 案件リスト
     public function clientworkList(Request $request) {
 
     
@@ -371,7 +432,7 @@ class BaseController extends Controller
         return view('clientworkList/clientworkList', compact('clientworkList','name','price', 'start','end','genre','add01','add02','add03','remote','tool','jobcontent','required_skill','Welcome_skills','note'));
 
     }
-
+// クライアントｃｓｖ化
     private function csvclientcolmns()
 {
     $csvlist = array(
@@ -390,7 +451,7 @@ class BaseController extends Controller
     );
     return $csvlist;
 }
-
+// クライアントｃｓｖ化
 public function downloadclient($id)
 {
     // 出力項目定義
@@ -456,7 +517,7 @@ public function downloadclient($id)
 
     return \Response::make($csv, 200, $headers);
 }
-
+// 案件登録
    public function clientWorks(Request $request,$id) 
 
     {
@@ -465,6 +526,7 @@ public function downloadclient($id)
             return view('clientWorks/clientWorks',compact('aaa'))->with('input', $request->all());
          
     }
+    // 案件登録チェック
     public function clientWorksCheck(clientWorksRequest $request) 
     {
         
@@ -472,20 +534,23 @@ public function downloadclient($id)
         return view('clientWorks/clientWorks_complete')->with('input', $request->all());;
         
     }
-
+// 案件登録確認完了
     public function clientWorksDone(clientWorksRequest $request)
     {
         $ClientWorks_record = new ClientWorks;
 
         $ClientWorks_record->client_id = $request->client_id;
-        $ClientWorks_record->name = $request->name;
-        $ClientWorks_record->price = $request->price;
         $ClientWorks_record->start = $request->start;
         $ClientWorks_record->end = $request->end;
+        $ClientWorks_record->name = $request->name;
+        $ClientWorks_record->price = $request->price;
+        $ClientWorks_record->devstart = $request->devstart;
+        $ClientWorks_record->devend = $request->devend;
         $ClientWorks_record->genre = $request->genre;
         $ClientWorks_record->add01 = $request->add01;
         $ClientWorks_record->add02 = $request->add02;
         $ClientWorks_record->add03 = $request->add03;
+        $ClientWorks_record->station = $request->station;
         $ClientWorks_record->remote = $request->remote;
         $ClientWorks_record->tool = $request->tool;
         $ClientWorks_record->job_content= $request->jobcontent;
@@ -502,7 +567,7 @@ public function downloadclient($id)
     }
 
 
-
+// クライアント詳細確認ページ
 
     public function clientMore($id)
     {
@@ -522,6 +587,7 @@ public function downloadclient($id)
                 'add01' => $client_data->add01,
                 'add02' => $client_data->add02,
                 'add03' => $client_data->add03,
+                'station' => $client_data->station,
                 'tel' => $client_data->tel,
                 'url' => $client_data->url,
                 'date' => $client_data->date,
@@ -536,22 +602,25 @@ public function downloadclient($id)
         
             
 
-            
-            public function clientMatter(Request $request)
+// クライアントの掲載中案件
+            public function clientMatter(Request $request,$id)
     {
-            $client_id = $request->input('cient_id');
+           
+        $name = $request->input('name');
+        $price = $request->input('price');
+        $start = $request->input('start');
+        $end = $request->input('end');
+        $query = Clientworks::query();
+            $query->where('client_id','=',$id); //id指定
+       
 
-            $query = Clientworks::query();
-
-            //user_idとIDが一致したとき表示する。
-            
-            if (empty($client_id)) {
-                $query->where('client_id', '=', (client::id()));
-            }
-
-            $client = $query->get();
-
-            return view('client/clientMore',compact('client','client_id'));
+ 
+       
+ 
+        $clientMatter = $query->get();
+ 
+        
+            return view('client/clientMatter',compact('name','price','start','end','clientMatter'));
          
     }
 
@@ -709,7 +778,8 @@ public function client()
     public function clientDone(clientRequest $request) 
     {
         $client_record = new Client;
-
+        $client_record->start = $request->start;
+        $client_record->end = $request->end;
         $client_record->name = $request->name;
         $client_record->name_kana = $request->name_kana;
         $client_record->email = $request->email;

@@ -132,7 +132,7 @@
                             <label for="note" class="col-md-4 control-label">備考欄</label>
 
                                  <div class="col-md-6">
-                                <textarea name="note" rows="4" cols="47" value="" placeholder="例：ああああああああああああああああああ" ></textarea><br>
+                                <textarea name="note" rows="4" cols="47" value="" placeholder="例：バイオテクノロジー関連 / 理化学機材 / 実験用試薬 / 工業用薬品の輸入、販売" ></textarea><br>
                                  </div>
                         </div>
 

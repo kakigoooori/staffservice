@@ -1,17 +1,12 @@
 @extends('layout/layout')
  @section('content')
- 
-<h1>内容確認</h1>
-<form method="post" action="/clientWorks/clientWorks_complete" id="create_form" enctype="multipart/form-data">
+<h1>変更内容確認</h1>
+<form method="post" action="/clientworksEdit/done/{{ $input['id'] }}" id="create_form">
 
 {{ csrf_field() }}
-<input type="hidden" name="client_id" value="{{$input['client_id']}}">
-
-<table class="table table-striped">
-  
 
 <tr>
-    <td>案件掲載開始</td>
+    <td>掲載開始</td>
     <td>
     {{ $input['start'] }}
     <input type="hidden" name="start" value="{{ $input['start'] }}">
@@ -26,16 +21,11 @@
     </td>
   </tr>
 
-
-
-<tr>
-
-
-
-
+<table class="table table-striped">
+  <tr>
     <td>案件名</td>
     <td>
-    {{ $input['name'] }}{{$input['client_id']}}
+    {{ $input['name'] }}
     <input type="hidden" name="name" value="{{ $input['name'] }}">
     </td>
   </tr>
@@ -49,38 +39,38 @@
   </tr>
 
   <tr>
-    <td>開発開始</td>
+    <td>開発期間</td>
     <td>
     {{ $input['devstart'] }}
     <input type="hidden" name="devstart" value="{{ $input['devstart'] }}">
     </td>
   </tr>
 
-  <tr?>
+  <tr>
     <td>開発終了</td>
     <td>
     {{ $input['devend'] }}
     <input type="hidden" name="devend" value="{{ $input['devend'] }}">
     </td>
-</tr>
-  
-<tr>
+  </tr>
+
+  <tr>
     <td>業界</td>
     <td>
     {{ $input['genre'] }}
     <input type="hidden" name="genre" value="{{ $input['genre'] }}">
     </td>
-</tr>
+  </tr>
 
-  
   <tr>
-    <td>所在地</td>
+    <td>郵便番号</td>
     <td>
     {{ $input['add01'] }}
     <input type="hidden" name="add01" value="{{ $input['add01'] }}">
     </td>
   </tr>
 
+  
   <tr>
     <td>都道府県</td>
     <td>
@@ -88,14 +78,16 @@
     <input type="hidden" name="add02" value="{{ $input['add02'] }}">
     </td>
   </tr>
+  
 
   <tr>
-    <td>以降住所</td>
+    <td>以降の住所</td>
     <td>
     {{ $input['add03'] }}
     <input type="hidden" name="add03" value="{{ $input['add03'] }}">
     </td>
   </tr>
+
 
   <tr>
     <td>最寄り駅</td>
@@ -114,7 +106,6 @@
     </td>
   </tr>
 
-
   <tr>
     <td>使用言語</td>
     <td>
@@ -126,7 +117,7 @@
   <tr>
     <td>職務内容</td>
     <td>
-    {!! nl2br(e( $input['jobcontent'] ))!!}
+    {{ $input['jobcontent'] }}
     <input type="hidden" name="jobcontent" value="{{ $input['jobcontent'] }}">
     </td>
   </tr>
@@ -134,34 +125,22 @@
   <tr>
     <td>必須スキル</td>
     <td>
-    {!! nl2br(e( $input['required_skill'] ))!!}
+    {{ $input['required_skill'] }}
     <input type="hidden" name="required_skill" value="{{ $input['required_skill'] }}">
     </td>
   </tr>
 
+  
   <tr>
     <td>歓迎スキル</td>
     <td>
-    {!! nl2br(e( $input['Welcome_skills'] ))!!}
+    {{ $input['Welcome_skills'] }}
     <input type="hidden" name="Welcome_skills" value="{{ $input['Welcome_skills'] }}">
     </td>
   </tr>
 
-
-
-
   <tr>
-    <td>職種</td>
-    <td>
-    {{ $input['genre'] }}
-    <input type="hidden" name="genre" value="{{ $input['genre'] }}">
-    </td>
-  </tr>
-
-  
- 
-  <tr>
-    <td>勤務地情報・備考欄</td>
+    <td>備考欄</td>
     <td>
     {!! nl2br(e( $input['note'] ))!!}
     <input type="hidden" name="note" value="{{ $input['note'] }}">
@@ -170,26 +149,22 @@
 
 
 
+  <input type="hidden" name="user_id" value="{{ $input['user_id'] }}">
   
  
 
 
 </table>
-<p>以上の内容で登録します。</p>
+<p>内容変更します。</p>
 <br>
 </form>
-
+<br>
+<input type="submit" form="create_form" value="変更" class="btn btn-primary">
+<br>
 <div class="row">
   <div class="col-sm-12">
-    
-    <a href="/client" class="btn btn-primary" value="">
-      戻る
-    </a>
-<br><br>
+  <button type="submit" name="action" class="btn btn-danger" value="back">フォームに戻る</button>
 
-<input type="submit" form="create_form" value="登録" class="btn btn-primary">
 </div>
 </div>
-
-
 @stop

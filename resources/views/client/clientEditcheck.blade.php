@@ -1,7 +1,7 @@
 @extends('layout/layout')
  @section('content')
 <h1>内容確認</h1>
-<form method="post" action="/client_edit/done/{{ $input['id'] }}" id="create_form">
+<form method="post" action="/clientworksEdit/done/{{ $input['id'] }}" id="create_form">
 
 {{ csrf_field() }}
 
@@ -113,11 +113,11 @@
 
 
 </table>
-<p>以上の内容で再投稿します。</p>
+<p>内容変更します。</p>
 <br>
 </form>
 <br>
-<input type="submit" form="create_form" value="登録" class="btn btn-primary">
+<input type="submit" form="create_form" value="変更" class="btn btn-primary">
 <br>
 <div class="row">
   <div class="col-sm-12">
