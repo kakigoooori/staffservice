@@ -14,10 +14,6 @@ Route::get('/info', function (){
     phpinfo();
     });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 //top画面へのアクセス
 Route::get('/top', 'BaseController@getTop');
 
@@ -25,11 +21,49 @@ Route::get('/top', 'BaseController@getTop');
 Route::get('/alert', 'BaseController@alert');
 
 
+// 書類一覧
+// 労働者派遣契約書
+Route::get('/documents/hakenn', 'BaseController@hakenn');
+Route::post('/documents/hakennCheck', 'BaseController@hakennCheck');
 
+// 労働者派遣通知書
+Route::get('/documents/tuuti', 'BaseController@tuuti');
+Route::post('/documents/tuutiCheck', 'BaseController@tuutiCheck');
 
-
+// 労働条件通知書
+Route::get('/documents/jyoukenn', 'BaseController@jyoukenn');
+Route::post('/documents/jyoukennCheck', 'BaseController@jyoukennCheck');
 //top
 Route::get('/mypage', 'BaseController@mypage');
+
+//投稿一覧
+Route::get('/mypage/toukou', 'BaseController@mypagetoukou');
+// matter
+Route::get('/client/clientMatter/{id}', 'BaseController@clientMatter');
+
+//投稿編集
+Route::get('/mypool_edit/{id}', 'BaseController@mypoolEdit');
+Route::post('/mypool_edit/{id}', 'BaseController@mypoolEditcheck');
+Route::post('/mypool_edit/done/{id}', 'BaseController@mypoolEditdone');
+
+
+//投稿削除
+Route::get('/mypool_delete/{id}', 'BaseController@mypoolDelete');
+Route::post('/mypool_delete/done/{id}', 'BaseController@mypoolDeletedone');
+
+
+
+//受信
+Route::get('/mypage/receive', 'BaseController@mypagereceive');
+
+Route::post('/mypage/receive/{id}', 'BaseController@receivereaction');
+
+
+//送信
+Route::get('/mypage/send', 'BaseController@mypagesend');
+
+Route::get('/mypage/send/{id}', 'BaseController@mypagesenddelete');
+
 
 
 
@@ -52,6 +86,11 @@ Route::get('/delete', 'BaseController@delete');
 //パスワード変更
 Route::get('/mypage/changepassword', 'EditController@showChangePasswordForm');
 Route::post('/mypage/changepassword', 'EditController@changePassword')->name('changepassword');
+
+//権限変更
+Route::get('/mypage/authority', 'PermissionController@config');
+Route::get('/mypage/authority/edit/{id}', 'PermissionController@editAuthority');
+Route::post('/mypage/authority/edit/done', 'PermissionController@editAuthorityDone');
 
 
 //仮登録l画面へのアクセス
@@ -96,6 +135,16 @@ Route::get('/clientworkList','BaseController@clientworkList')->name('clientWorkL
 // 案件詳細確認ｃｓｖ
 Route::get('/clientworkMore/{id}','BaseController@clientworkMore')->name('clientworkMorepage');
 Route::get('/csv/downloadworks/{id}','BaseController@downloadworks');
+
+
+//案件編集
+Route::get('/clientworksEdit/{id}', 'BaseController@clientworksEdit');
+Route::post('/clientworksEdit/{id}', 'BaseController@clientworksEditcheck');
+Route::post('/clientworksEdit/done/{id}', 'BaseController@clientworksEditdone');
+
+//案件削除
+Route::get('/clientwork_delete/{id}', 'BaseController@clientworkDelete');
+Route::post('/clientworkDeletedone/{id}', 'BaseController@clientworkDeletedone');
 
 //search画面へのアクセス
 Route::get('/search', 'BaseController@getSearch');

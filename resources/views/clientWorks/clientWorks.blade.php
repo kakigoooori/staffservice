@@ -4,7 +4,18 @@
 
 <form method="post" action="/clientWorks" enctype="multipart/form-data">
 <br>
+
+
+
 <h2>案件登録</h2>
+
+<p><b>掲載期間</b></p>
+<div class="form-group">   
+<input type="date" name="start" value="<?php echo date('Y-m-d');?>">
+～
+<input type="date" name="end" value="<?php echo date('Y-m-d');?>">
+</div>  
+
 @if ($errors->any())
   <div class="alert alert-danger">
     <ul>
@@ -45,9 +56,9 @@
 
 <p><b>開発期間</b></p>
 <div class="form-group">   
-<input type="date" name="start" value="<?php echo date('Y-m-d');?>">
+<input type="date" name="devstart" value="<?php echo date('Y-m-d');?>">
 ～
-<input type="date" name="end" value="<?php echo date('Y-m-d');?>">
+<input type="date" name="devend" value="<?php echo date('Y-m-d');?>">
 </div>  
 
 
@@ -93,6 +104,16 @@
 <label for="add03" class=col-md-4 control-label>以降の住所</label>
 <input type="text" name="add03" size="60">
 </div> 
+
+<p><b>最寄り駅</b></p>
+<div class="form-group">                        
+  <input type="text" name="station"  class="form-control 
+      @if(!empty($errors->first('station'))) border-danger @endif"
+      value="{{ old('station') }}">
+      <p>
+        <span class="help-block text-danger">{{$errors->first('station')}}</span>
+     </p>        
+</div>        
 
 <p><b>リモート開発</b></p>   
 <div class="form-group">              
@@ -168,7 +189,7 @@ CIや自動構成管理 運用経験
      </p>   
 </div>
 
-<p><b>勤務地情報・備考</b></p>
+<p><b>勤務地情報・備考欄</b></p>
 <div class="form-group" >
 <textarea name="note" rows="4" cols="130" class="form-control 
       @if(!empty($errors->first('note'))) border-danger @endif"

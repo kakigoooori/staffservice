@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
@@ -65,8 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-
+        $user = User::create([
             'area' => $data['area'],
             'number' => $data['number'],
             'password' => bcrypt($data['password']),
@@ -78,10 +78,15 @@ class RegisterController extends Controller
             'tel' => $data['tel'],
             'note' => $data['note'],
             'image' => $data['image'],
-        
         ]);
-    }
 
+        //role付与
+        $permission = new PermissionController;
+        $id = $user->id;
+        $give_role = $permission->giveRole($id);
+
+        return $user;
+    }
    
  }
 
