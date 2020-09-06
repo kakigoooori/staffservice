@@ -106,9 +106,6 @@
   <p><a class="btn btn-primary" href=/csv/download/{{$input['id'] }} target="_blank"> CSV download その1</a></p>
 
 
-</td>
-</tr>
-</table>
 
 </div>
 <div class="card" >
@@ -394,11 +391,12 @@
 <table class="table table-hover">
     <tr>
     <th><p><input type="submit" value="検索する" formaction=/clientworkMore/{{$input['id'] }} class="btn btn-primary"></p></th>
-    <th><p><input type="submit" value="メール送信" formaction=/clientworkMore/{{$input['id'] }} class="btn btn-primary"></p></th>
-    <th><p><input type="submit" value="SMS送信" formaction=/clientworkMore/{{$input['id'] }} class="btn btn-primary"></p></th>
+    </form>
+    <form method="get" target="_blank" >
+    <th><p><input type="submit" value="メール送信" formaction=/workmail/{{ $input['id'] }} class="btn btn-danger"  ></p></th>
+    <th><p><input type="submit" value="SMS送信"  formaction=/clientworkMore/{{$input['id'] }} class="btn btn-success"></p></th>
     </tr>
     </table>
-</form>
 
 <table class="table table-hover">
     <tr>
@@ -416,6 +414,9 @@
         <td>{{ $menu->id }}</td>
         <td>{{ $menu->name }}</td>
         <td>{{ $menu->phonetic}}</td>
+        <input type="hidden" name="id[]" value="{{ $menu->id }}">
+        <input type="hidden" name="name[]" value="{{ $menu->name }}">
+        <input type="hidden" name="mail[]" value="{{ $menu->email}}">
         <td>{{ \Carbon\Carbon::createFromDate($menu->year,$menu->month,$menu->day)->age }}歳</td>
         <td>{{ $menu->gender }}</td>
         <td>{{ $menu->pref01 }}&nbsp;&nbsp;{{ $menu->addr01 }}</td>
@@ -426,6 +427,7 @@
     @endforeach
 
 </table>
+</form>
 </div>
  </div>
  </div>

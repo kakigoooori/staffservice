@@ -156,7 +156,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 //logout
 Route::get('/logout', 'Auth\LoginController@logout');
 
+//mail
 
+Route::get('/workmail/{id}', 'BaseController@getworkmail');
 
 
 

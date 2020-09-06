@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact;
 use App\Mail\Receive;
-use App\Mail\Complete;
 
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\ClientWorksRequest;
@@ -185,6 +184,7 @@ class BaseController extends Controller
             if (is_null($clientworkmore_data)) {
               return redirect()->action('BaseController@clientworkList');
             }
+            
 
             return view('clientWorks/clientworkMore',compact('clientworkmore','search','gender','age','age2','certification1','pref01','addr01','station','job'))->with(
               'input', [
@@ -2074,9 +2074,18 @@ public function staffdownload(Request $request)
        }
 
 
-     //プロフィールページ
+     //案件メールフォーム
 
-
+     public function getworkmail (Request $request,$id)
+     {
+        $clientworkmore_data = clientworks::find($id);
+        $client_data = clientworks::find($id)->client;
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $mail = $request->input('mail');
  
+        return view('email/workmail',compact('client_data','id','name','mail'))->with('input', $request->all());
+
+    }
 
 }
